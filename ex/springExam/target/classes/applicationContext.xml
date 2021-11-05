@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!--
+	<bean id="tv" class="com.spring.product.SamsungUTV"
+		p:speaker-ref="sony" p:price="55000">
+	</bean>
+	<bean id="sony" class="com.spring.product.SonySpeaker"></bean>
+	<bean id="apple" class="com.spring.product.AppleSpeaker"></bean> -->
+	
+	<!--
+	<bean id="collectionBean" class="com.spring.injection.CollectionBean">
+		<property name="addressList">
+			<props>
+				<prop key="홍길동">서울시 강남구 역삼동</prop>
+				<prop key="김철수">서울시 성동구 무학로2길</prop>
+			</props>
+		</property>	
+	</bean> -->
+	
+	<context:component-scan base-package="com.spring" />
+	
+	<!--
+	<bean id="tv" class="com.spring.product.LgUTV"></bean>
+	<bean id="sony" class="com.spring.product.SonySpeaker"></bean> -->
+</beans>
