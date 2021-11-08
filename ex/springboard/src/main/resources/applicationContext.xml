@@ -3,8 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<context:component-scan base-package="com.spring">
 	</context:component-scan>
@@ -14,4 +16,15 @@
 		
 	</bean>-->
 	<!-- <bean id="userDAO" class="com.spring.user.dao.UserDAO" /> -->
+	
+	<!-- <bean id="log" class="com.spring.common.Log4jAdvice"></bean>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring..*Impl.*(..))" id="allPointcut"/>
+		<aop:aspect ref="log">
+			<aop:before method="printLogging" pointcut-ref="allPointcut" />
+		</aop:aspect>
+	</aop:config>-->
+	
+	<!-- AOP 어노테이션 설정 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>
