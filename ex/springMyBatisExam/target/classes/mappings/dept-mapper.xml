@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.deptdao.DeptMapper">
+
+   <resultMap type="com.spring.deptvo.DeptVO" id="deptVO">
+      <result property="deptid" column="dept_id"/>
+      <result property="deptname" column="dept_name"/>
+      <result property="depttel" column="dept_tel"/>
+   </resultMap>
+   
+   <select id="listDepartment" parameterType="com.spring.deptvo.DeptVO" resultMap="deptVO">
+      SELECT dept_id, dept_name, dept_tel
+      FROM department
+      <where>
+         <if test="deptname != null and deptname != ''">
+            dept_name like '%'||#{deptname}||'%'
+         </if>
+      </where>
+   </select>
+   
+   <select id="selectDepartment" parameterType="java.lang.String" resultMap="deptVO">
+      SELECT dept_id, dept_name, dept_tel
+      FROM department
+      WHERE dept_id = #{deptid}
+   </select>
+   
+   <insert id="insertDepartment" parameterType="com.spring.deptvo.DeptVO">
+      INSERT INTO department (dept_id, dept_name, dept_tel)
+      VALUES (#{deptid}, #{deptname}, #{depttel})
+   </insert>
+   
+   <update id="updateDepartment" parameterType="com.spring.deptvo.DeptVO">
+      UPDATE department
+      SET dept_name = #{deptname}, dept_tel = #{depttel}
+      WHERE dept_id = #{deptid}
+   </update>
+   
+   <delete id="deleteDepartment" parameterType="com.spring.deptvo.DeptVO">
+      DELETE FROM department
+      WHERE dept_id = #{deptid}
+   </delete>
+   
+</mapper>
