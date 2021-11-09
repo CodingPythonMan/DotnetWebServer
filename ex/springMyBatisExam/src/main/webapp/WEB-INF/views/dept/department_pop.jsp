@@ -68,7 +68,7 @@
 			alert("학과명을 입력해주세요.");
 			return false;
 		}
-		return false;
+		return true;
 	}
 </script>
 </head>
@@ -89,19 +89,19 @@
 						<th>
 							<span class="required">*</span>학과코드
 						</th>
-						<td><input type="text" if="deptid" name="deptid" value="${DeptVO.deptid }" /></td>
+						<td><input type="text" id="deptid" name="deptid" value="${DeptVO.deptid }" /></td>
 					</tr>
 					<tr>
 						<th>
 							<span class="required">*</span>학과명
 						</th>
-						<td><input type="text" if="deptname" name="deptname" value="${DeptVO.deptname }" /></td>
+						<td><input type="text" id="deptname" name="deptname" value="${DeptVO.deptname }" /></td>
 					</tr>
 					<tr>
 						<th>
 							<span class="required">*</span>전화번호
 						</th>
-						<td><input type="text" if="depttel" name="depttel" value="${DeptVO.depttel }" /></td>
+						<td><input type="text" id="depttel" name="depttel" value="${DeptVO.depttel }" /></td>
 					</tr>
 				</tbody>
 			</table>

@@ -5,13 +5,14 @@
 <mapper namespace="com.spring.deptdao.DeptMapper">
 
    <resultMap type="com.spring.deptvo.DeptVO" id="deptVO">
-      <result property="deptid" column="dept_id"/>
-      <result property="deptname" column="dept_name"/>
-      <result property="depttel" column="dept_tel"/>
+      <result property="deptid" column="Dept_ID"/>
+      <result property="deptname" column="Dept_Name"/>
+      <result property="depttel" column="Dept_Tel"/>
    </resultMap>
    
    <select id="listDepartment" parameterType="com.spring.deptvo.DeptVO" resultMap="deptVO">
-      SELECT dept_id, dept_name, dept_tel
+      SELECT Dept_ID, 
+      Dept_name, Dept_tel
       FROM department
       <where>
          <if test="deptname != null and deptname != ''">
@@ -26,20 +27,23 @@
       WHERE dept_id = #{deptid}
    </select>
    
-   <insert id="insertDepartment" parameterType="com.spring.deptvo.DeptVO">
-      INSERT INTO department (dept_id, dept_name, dept_tel)
-      VALUES (#{deptid}, #{deptname}, #{depttel})
+     <insert id="insertDepartment" parameterType="com.spring.deptvo.DeptVO">
+      INSERT INTO department 
+      (Dept_ID, Dept_Name, Dept_Tel)
+      VALUES(#{deptid},#{deptname},#{depttel})
    </insert>
    
-   <update id="updateDepartment" parameterType="com.spring.deptvo.DeptVO">
+  <update id="updateDepartment" parameterType="com.spring.deptvo.DeptVO">
       UPDATE department
-      SET dept_name = #{deptname}, dept_tel = #{depttel}
-      WHERE dept_id = #{deptid}
+      SET Dept_Name = #{deptname},
+         Dept_Tel = #{depttel}
+      WHERE
+      Dept_Id = #{deptid}
    </update>
-   
+
    <delete id="deleteDepartment" parameterType="com.spring.deptvo.DeptVO">
       DELETE FROM department
-      WHERE dept_id = #{deptid}
+      WHERE Dept_Id = #{deptid}
    </delete>
    
 </mapper>

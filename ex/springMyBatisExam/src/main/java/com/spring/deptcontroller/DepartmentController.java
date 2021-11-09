@@ -72,6 +72,25 @@ public class DepartmentController {
 	@RequestMapping("/updateDepartment")
 	public ModelAndView updateDepartment(@ModelAttribute DeptVO param) {
 		String resultStr="";
+		int result = deptService.updateDepartment(param);
+		
+		if(result > 0) {
+			resultStr="수정 완료되었습니다.";
+		}else {
+			resultStr="수정에 문제가 있어 완료하지 못하였습니다.";
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", resultStr);
+		mav.setViewName("result");
+		
+		return mav;
+	}
+	
+	/* 레코드 삭제 */
+	@RequestMapping("/deleteDepartment")
+	public ModelAndView deleteDepartment(@ModelAttribute DeptVO param) {
+		String resultStr="";
 		int result = deptService.deleteDepartment(param);
 		
 		if(result > 0) {
