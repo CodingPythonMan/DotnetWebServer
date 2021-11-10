@@ -11,5 +11,6 @@
 </head>
 <body>
 	<a href="department/listDepartment.do">[학과 데이터]</a>
+	<a href="lesson/listLesson.do">[과목 데이터]</a>
 </body>
 </html>
