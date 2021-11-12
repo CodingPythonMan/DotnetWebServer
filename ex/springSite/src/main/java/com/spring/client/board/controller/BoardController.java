@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.client.board.service.BoardService;
 import com.spring.client.board.vo.BoardVO;
+import com.spring.common.page.Paging;
+import com.spring.common.util.Util;
 
 @Controller
 @RequestMapping(value="/board")
@@ -27,12 +29,26 @@ public class BoardController {
 	 * 글 목록 구현하기
 	 ***********************************/
 	@RequestMapping(value="/boardList.do", method=RequestMethod.GET)
-	public String boardList(Model model) {
+	public String boardList(@ModelAttribute BoardVO bvo, Model model) {
 		log.info("boardList 호출 성공");
 		
-		List<BoardVO> boardList = boardService.boardList();
+		// 페이지 세팅
+		Paging.setPage(bvo);
+		
+		// 전체 레코드 수 구현
+		int total = boardService.boardListCnt(bvo);
+		log.info("total = " + total);
+		
+		// 글번호 재설정
+		int count = total - (Util.nvl(bvo.getPage()) - 1) * Util.nvl(bvo.getPageSize());
+		log.info("count = " + count);
+		
+		List<BoardVO> boardList = boardService.boardList(bvo);
+		
 		model.addAttribute("boardList", boardList);
-		model.addAttribute("data");
+		model.addAttribute("count", count);
+		model.addAttribute("total", total);
+		model.addAttribute("data", bvo);
 		
 		return "board/boardList";
 	}

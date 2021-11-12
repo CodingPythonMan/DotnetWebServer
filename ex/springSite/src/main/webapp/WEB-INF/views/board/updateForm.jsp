@@ -69,8 +69,7 @@
 						<tr>
 							<td class="ac vm">내용</td>
 							<td colspan="3">
-								<textarea name="b_content" id="b_content">
-								${updateData.b_content }</textarea>
+								<textarea name="b_content" id="b_content">${updateData.b_content }</textarea>
 							</td>
 						</tr>
 						<tr>
