@@ -16,6 +16,16 @@
 	$(function(){
 		$("#pwdChk").hide();
 		
+		/* 첨부파일 이미지 보여주기 위한 속성 추가 */
+		var file = "<c:out value='${detail.b_file}' />";
+		if(file!=""){
+			$("#fileImage").attr({
+				src:"/uploadStorage/board/${detail.b_file}",
+				width: "450px",
+				height: "200px"
+			});
+		}
+		
 		/* 수정 버튼 클릭 시 처리 이벤트 */
 		$("#updateFormBtn").click(function(){
 			$("#pwdChk").show();
@@ -130,9 +140,17 @@
 						<td class="ac vm">내용</td>
 						<td colspan="3">${detail.b_content}</ted>
 					</tr>
+					<c:if test="${detail.b_file != '' }">
+					<tr>
+						<td class="ac vm">첨부파일 이미지</td>
+						<td colspan="3">
+						<img id="fileImage"></td>
+					</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</div>
+		<%-- == 상세 정보 보여주기 종료 == --%>
 	</div>
 </body>
 </html>
