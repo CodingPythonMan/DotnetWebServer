@@ -12,4 +12,5 @@ public interface BoardDao {
 	public int pwdConfirm(BoardVO bvo);
 	public int boardUpdate(BoardVO bvo);
 	public int boardDelete(int b_num);
+	public int replyChoiceDelete(int b_num);
 }

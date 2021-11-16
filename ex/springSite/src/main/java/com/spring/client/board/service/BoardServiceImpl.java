@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.client.board.dao.BoardDao;
 import com.spring.client.board.vo.BoardVO;
+import com.spring.client.reply.dao.ReplyDao;
+import com.spring.client.reply.vo.ReplyVO;
 
 @Service
 @Transactional
@@ -15,6 +17,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private ReplyDao replyDao;
 	
 	// 글목록 구현
 	@Override
@@ -81,11 +86,16 @@ public class BoardServiceImpl implements BoardService{
 		return result;
 	}
 
-	// 글 삭제 구현
+	/* 글 삭제 구현
+	 * 해당 게시물에 댓글이 존재하면 전체 댓글 삭제 후 게시물 삭제 */
 	@Override
 	public int boardDelete(int b_num) {
 		int result = 0;
 		try {
+			List<ReplyVO> list = replyDao.replyList(b_num);
+			if(!list.isEmpty()) {
+				result = replyDao.replyChoiceDelete(b_num);
+			}
 			result = boardDao.boardDelete(b_num);
 		}catch(Exception e) {
 			e.printStackTrace();

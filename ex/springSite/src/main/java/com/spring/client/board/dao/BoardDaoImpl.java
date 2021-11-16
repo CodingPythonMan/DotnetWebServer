@@ -49,10 +49,16 @@ public class BoardDaoImpl implements BoardDao {
 		return session.update("boardUpdate", bvo); 
 	}
 
-	// 글 삭제 구현
+	// 글 삭제 구현(댓글 번호로 삭제)
 	@Override
 	public int boardDelete(int b_num) {
 		return session.delete("boardDelete", b_num);
+	}
+
+	// 글 삭제 구현(게시글 번호로 해당 게시글 댓글 삭제)
+	@Override
+	public int replyChoiceDelete(int b_num) {
+		return session.delete("replyChoiceDelete", b_num);
 	}
 
 }
