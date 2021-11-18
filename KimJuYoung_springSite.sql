@@ -56,3 +56,58 @@ comment on column spring_gallery.g_date is '갤러리게시판 등록일';
 
 --2. 시퀀스 생성
 create sequence spring_gallery_seq;
+
+-- 1. 회원가입 테이블
+create table spring_member(
+    idx number,
+    userid varchar2(70) not null,
+    userpw varchar2(100) not null,
+    username varchar(50) not null,
+    pinno varchar2(15) not null,
+    email varchar2(70) not null,
+    phone varchar2(13) not null,
+    joindate date default sysdate,
+    constraint spring_member_pk primary key(idx),
+    constraint spring_member_uk unique(userid)
+);
+
+comment on table spring_member is '회원 테이블 정보';
+comment on column spring_member.idx is '회원테이블 순번';
+comment on column spring_member.userid is '회원테이블 아이디';
+comment on column spring_member.userpw is '회원테이블 비밀번호';
+comment on column spring_member.username is '회원테이블 이름';
+comment on column spring_member.pinno is '회원테이블 생년월일';
+comment on column spring_member.email is '회원테이블 이메일';
+comment on column spring_member.phone is '회원테이블 핸드폰번호';
+comment on column spring_member.joindate is '회원테이블 등록일';
+
+-- 2. 회원 가입시 사용할 회원번호(시퀀스)
+create sequence spring_member_seq;
+
+-- 3. 해시함수 솔트값을 저장하기 위한 테이블(비밀번호 암호화)
+create table security(
+    userid varchar2(70),
+    salt varchar2(70),
+    constraint security_pk primary key(userid)
+);
+
+-- 4. 로그인 정보 저장 테이블
+create table login_history(
+    idx number,
+    userid varchar2(70),
+    retry number default 0,
+    lastFailedLogin number default 0,
+    lastSuccessedLogin number default 0,
+    clientip varchar2(15),
+    constraint login_history_pk primary key(idx)
+);
+
+comment on table login_history is '로그인 정보 저장 테이블';
+comment on column login_history.idx is '순번';
+comment on column login_history.userid is '로그인 아이디';
+comment on column login_history.retry is '로그인 시도 횟수';
+comment on column login_history.lastfailedlogin is '마지막으로 성공한 로그인 시간';
+comment on column login_history.clientip is '로그인한 사용자의 ip 주소';
+
+-- 5. 로그인 정보 저장시 사용할 순번(시퀀스)
+create sequence login_history_seq;
