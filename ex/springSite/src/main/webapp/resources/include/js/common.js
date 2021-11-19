@@ -106,3 +106,19 @@ function inputVerify(index, data, printarea){
 		return true;
 	}
 }
+
+/* 함수명 : getDateFormat(날자 데이터)
+	설명 : dataValue 값을 년-월-일 형식(예시 : 2018-01-01)으로 반환.
+*/
+function getDateFormat(dateValue){
+	var year = dateValue.getFullYear();
+	
+	var month = dateValue.getMonth() + 1;
+	month = (month<10) ? "0" + month : month;
+	
+	var day = dateValue.getDate();
+	day = (day<10) ? "0" + day : day;
+	
+	var result = year + "-" + month + "-" + day;
+	return result;
+}

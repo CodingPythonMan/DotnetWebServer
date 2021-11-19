@@ -95,7 +95,7 @@
 					<label for="phone"
 					class="col-sm-2 control-label">핸드폰 번호</label>
 					<div class="col-sm-3">
-						<input type="password" id="phone"
+						<input type="text" id="phone"
 						name="phone" maxlength="15"
 						class="form-control"
 						value="${member.phone }">

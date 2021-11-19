@@ -17,6 +17,7 @@
 	<!-- Handles Http GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/uploadStorage/**" location="/uploadStorage/" />
+	<resources mapping="/graph/**" location="/graph/" />
 		
 	<!-- 어노테이션 설정 -->
 	<context:annotation-config />
@@ -45,6 +46,7 @@
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/tiles/tiles-setting.xml</beans:value>
+				<beans:value>/WEB-INF/tiles/admin-setting.xml</beans:value>
 			</beans:list>
 		</beans:property>	
 	</beans:bean>

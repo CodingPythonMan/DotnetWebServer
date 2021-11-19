@@ -10,12 +10,27 @@ public class CommonVO {
 	private String search = "";
 	private String keyword = "";
 	
+	// 날짜 검색 시 사용할 필드
+	private String start_date = "";
+	private String end_date = "";
+	
 	// 제목 클릭 시 정렬을 위한 필드
 	private String order_by;
 	private String order_sc;
 	
 	
-	
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
 	public String getPage() {
 		return page;
 	}
