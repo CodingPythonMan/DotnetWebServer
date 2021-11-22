@@ -19,6 +19,7 @@ import com.spring.client.member.vo.MemberVO;
 import com.spring.common.graph.ChartMake;
 
 @Controller
+@RequestMapping(value="/admin")
 public class AdminMemberController {
 	private Logger log = LoggerFactory.getLogger(AdminMemberController.class);
 	

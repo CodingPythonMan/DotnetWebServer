@@ -11,14 +11,12 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	
 	<!-- 자동으로 AspectJ 라이브러리를 이용해서 Proxy 객체를 생성해 내는 용도로 사용 -->
 	<aop:aspectj-autoproxy />
 	
-	<!-- Handles Http GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/uploadStorage/**" location="/uploadStorage/" />
-	<resources mapping="/graph/**" location="/graph/" />
-		
 	<!-- 어노테이션 설정 -->
 	<context:annotation-config />
 	
@@ -29,17 +27,10 @@
 		<beans:property name="maxUploadSize" value="5242880" />
 	</beans:bean>
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles Http GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<!-- ViewResolver에 설정 부분을 주석처리한다. -->
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean> -->
+	<resources mapping="/uploadStorage/**" location="/uploadStorage/" />
+	<resources mapping="/graph/**" location="/graph/" />
 	
 	<!-- 타일즈(tiles) 설정 -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

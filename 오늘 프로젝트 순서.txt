@@ -1,0 +1,117 @@
+property facets => java 1.8, runtime tomcat
+
+pom 수정 
+- java 1.6 ->1.8, 5.0.7 release
+- Mybatis디펜던시 추가
+
+	<!-- MyBatis -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.5.2</version>
+	</dependency>
+		
+	<!-- MyBatis Spring -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>2.0.2</version>
+	</dependency>
+		
+	<!-- Spring JDBC -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+		
+	<!-- DBCP -->
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+
+
+web.xml
+
+<web-app version="3.1" xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://JAVA.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_3_1.xsd">
+
+- welcome , appservlet 루트 변경
+<welcome-file-list>
+	<welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+
+<servlet-mapping>
+	<servlet-name>appServlet</servlet-name>
+	<url-pattern>*.do</url-pattern>
+</servlet-mapping>
+
+- 한글 처리 추가
+<!-- ============= 한글처리 ================ -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+servlet-context 
+- tx 추가
+- 어노테이션 설정 <context:annotation-config />
+- context:component-scan 변경
+
+root-context
+- context 추가
+- dataSource bean 추가 (destory시 close)
+- sqlSessionFactory 추가
+- sqlSession 추가
+- transactionManager 추가
+
+DataBase 대로 Class VO 만듬.
+
+Controller 만든다. 
+class 위에 @Controller 추가
+@RequestMapping 추가
+	필요한 메소드 추가한다.
+	@RequestMapping 추가
+	@ModelAttribute SubjectVO param 하면 
+	속성들을 매개변수로 가져온다.
+	이제 기능을 생각해야 한다.
+
+	목록조회는 subjectVO 여러개를 보여줘야한다.
+	갯수 제한이 없는 자료구조를 쓰면 된다.
+	이 때, 서비스 클래스를 이용해 List 구조에 subjectVO를 담아준다.
+
+서비스 클래스를 이용하기 위해 @Autowired 통해 생성한다.
+서비스 인터페이스, 서비스Impl 클래스를 생성한다.
+서비스Impl 에 @Service, @Transactional 을 추가한다.
+	
+서비스Impl 에서 listSubject를 구현하고 있다.
+ArrayList로 추가해주기 위해서 DB와 연결된 Dao를 사용해야한다.
+subjectDao도 인터페이스, 클래스 만들어준다.
+
+subjectDaoImpl 되어있는 곳엔 저장소라는 의미의 @Repository가 필요하다.
+그리고 SqlSession 이 필요하다. @Autowired 추가.
+
+Mapper 로 넘어간다.
+subject-mapper => 여러개 값을 받을 땐 resultMap, 단일 값은 resultType 으로 받는다.
+
+SubjectController 로 다시 넘어와서.
+jsp 로 곧바로 가는 게 아니라, ModelAndView 로 JSP로 넘길 준비 한다.
+mav.addObject("subjectList", list)해주면 JSP에서 subjectList 로 쓰게된다.
+
+이제 JSP를 만들어주면된다.
+
