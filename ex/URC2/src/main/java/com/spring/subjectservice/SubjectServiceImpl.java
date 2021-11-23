@@ -26,4 +26,19 @@ public class SubjectServiceImpl implements SubjectService {
 		return list;
 	}
 
+	@Override
+	public int insertSubject(SubjectVO param) {
+		return subjectDao.insertSubject(param);
+	}
+
+	@Override
+	public SubjectVO selectSubject(int no) {
+		return subjectDao.selectSubject(no);
+	}
+
+	@Override
+	public int updateSubject(SubjectVO param) {
+		return subjectDao.updateSubject(param);
+	}
+
 }

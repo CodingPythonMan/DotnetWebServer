@@ -16,24 +16,34 @@
 		FROM subject
 	</select>
 	
-	<!--	
-	<select id="getAll" resultMap="YourResultSet">
-		SELECT * FROM tablename1
-	</select>
-
-	<insert id="insertSomething" parameterType="#modelname">
-		INSERT INTO tablename1 (columnname1, columnname2, columnname3)
-		VALUES(#{value1},#{value2},#{value3})
+	<!--
+	<insert id="insertSubject" parameterType="com.spring.subjectvo.SubjectVO">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select subject_seq.nextval from dual
+		</selectKey>
+		INSERT INTO subject (no, s_num, s_name)
+		VALUES(#{no},#{s_num},#{s_name})
+	</insert>  -->
+	
+	<insert id="insertSubject" parameterType="com.spring.subjectvo.SubjectVO">
+		INSERT INTO subject (no, s_num, s_name)
+		VALUES(subject_seq.nextval,#{s_num},#{s_name})
 	</insert>
-
-	<update id="updateSomething" parameterType="#modelname">
-		UPDATE tablename1
-		SET
-		columnname1=#{param1}
-		WHERE
-		columnname2 = #{param2}
+	
+	<select id="selectSubject" parameterType="int" resultMap="subjectVO">
+		select no, s_num, s_name
+		from subject
+		where no = #{no}
+	</select>
+	
+	<update id="updateSubject" parameterType="com.spring.subjectvo.SubjectVO">
+		update subject 
+		set
+		s_num=#{s_num}, s_name=#{s_name}
+		where no = #{no}
 	</update>
 	
+	<!--	
 	<delete id="deleteSomething" parameterType="int">
 		DELETE FROM tablename1 WHERE
 		columnname1 = #{param1}

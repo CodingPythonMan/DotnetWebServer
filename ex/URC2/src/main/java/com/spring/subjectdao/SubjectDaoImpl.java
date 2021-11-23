@@ -21,4 +21,19 @@ public class SubjectDaoImpl implements SubjectDao {
 		return sqlSession.selectList(namespace+".listSubject", param);
 	}
 
+	@Override
+	public int insertSubject(SubjectVO param) {
+		return sqlSession.insert(namespace+".insertSubject", param);
+	}
+
+	@Override
+	public SubjectVO selectSubject(int no) {
+		return sqlSession.selectOne(namespace+".selectSubject", no);
+	}
+
+	@Override
+	public int updateSubject(SubjectVO param) {
+		return sqlSession.update(namespace+".updateSubject", param);
+	}
+
 }
