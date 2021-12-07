@@ -17,23 +17,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zeus.domain.Member;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
 @Controller
 public class HomeController {
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/registerAjaxForm", method=RequestMethod.GET)
+	public String registerAjaxForm() {
+		log.info("registerAjaxForm");
+		return "registerAjaxForm";
+	}
+	
+	/* home 설정
+	@GetMapping(value="/")
 	public String home(Locale locale, Model model) {
 		//info 레벨의 로그를 출력한다.
-		log.info("환영합니다. 지역은 " + locale + ".");
+		log.info("환영합니다. 클라이언트 지역은 " + locale + "입니다.");
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
-		String formatterDate = dateFormat.format(date);
-		model.addAttribute("서버 시간", formatterDate);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
 		
-		System.out.println(model);
 		return "home";
 	}
 	
@@ -86,7 +93,7 @@ public class HomeController {
 		Member member = new Member();
 		
 		return member;
-	}
+	}*/
 	
 	/*
 	@ResponseBody

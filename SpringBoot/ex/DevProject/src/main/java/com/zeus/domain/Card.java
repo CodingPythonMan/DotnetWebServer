@@ -14,6 +14,7 @@ import lombok.ToString;
 public class Card {
 	private String no;
 	
-	@DateTimeFormat(pattern="yyyyMM")
+	//@DateTimeFormat(pattern="yyyyMM")
+	@DateTimeFormat(pattern="yyyyMMdd")
 	private Date validMonth;
 }

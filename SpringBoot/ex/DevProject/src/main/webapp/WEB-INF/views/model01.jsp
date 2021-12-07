@@ -5,10 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>모델 객체</title>
+<title>모델을 통한 데이터 전달</title>
 </head>
 <body>
-	<h1>데이터 전달</h1>
-	<P>서버의 시간은 ${serverTime }.</P>
+	<h2>model01 결과</h2>
+	
+	userId : ${userId } <br>
+	password : ${password } <br>
+	userName : ${userName } <br>
+	email : ${email } <br>
 </body>
 </html>
