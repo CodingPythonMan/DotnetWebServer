@@ -12,6 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +41,354 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class MemberController {
 	
-	/* 셀렉트 박스 요소 */
+	/* 중첩된 자바빈즈 입력값 검증
+	// 입력값 검증을 할 도메인 클래스에 @Validated를 지정한다.
+		@RequestMapping(value="/registerValidation4", method=RequestMethod.POST)
+		public String registerValidation3(@Validated Member member, BindingResult result) {
+			log.info("registerValidation4");
+			
+			if(result.hasErrors()) {
+				return "registerValidation4Form";
+			}
+			
+			log.info("member.getUserId() = " +member.getUserId());
+			log.info("member.getBirthDate() = " +member.getDateOfBirth());
+		
+			Address address = member.getAddress();
+			
+			if(address != null) {
+				log.info("address != null address.getPostCode() = " + address.getPostCode());
+				log.info("address != null address.getLocation() = " + address.getLocation());
+			}else {
+				log.info("address == null");
+			}
+			List<Card> cardList = member.getCardList();
+			
+			if(cardList != null) {
+				log.info("cardList != null = " + cardList.size());
+				for(int i=0; i<cardList.size(); i++) {
+					Card card = cardList.get(i);
+					log.info("card.getNo() = " + card.getNo());
+					log.info("card.getValidMonth() = " + card.getValidMonth());					
+				}
+			}else {
+				log.info("cardList == null");
+			}
+			return "success";
+		}
+		
+		@RequestMapping(value="/registerValidation4Form01", method=RequestMethod.GET)
+		public String registerValidation4Form01(Model model) {
+			log.info("registerValidation4Form01");
+			
+			model.addAttribute("member", new Member());
+			
+			return "registerValidation4Form";
+		}
+		
+		@RequestMapping(value="/registerValidation4Form02", method=RequestMethod.GET)
+		public String registerValidation4Form02(Model model) {
+			log.info("registerValidation4Form02");
+			
+			Member member = new Member();
+			
+			member.setPassword("1234");
+			member.setEmail("aaa@ccc.com");
+			member.setUserName("홍길동");
+			
+			Address address = new Address();
+			address.setPostCode("080908");
+			address.setLocation("seoul");
+			
+			member.setAddress(address);
+			
+			List<Card> cardList = new ArrayList<Card>();
+			
+			Card card1 = new Card();
+			card1.setNo("123456");
+			
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR, 2021);
+			cal.set(Calendar.MONTH, 9);
+			cal.set(Calendar.DAY_OF_MONTH, 8);
+		
+			card1.setValidMonth(cal.getTime());
+			
+			cardList.add(card1);
+			
+			Card card2 = new Card();
+			card1.setNo("456786");
+			
+			cal.set(Calendar.YEAR, 2022);
+			cal.set(Calendar.MONTH, 11);
+			cal.set(Calendar.DAY_OF_MONTH, 7);
+		
+			card2.setValidMonth(cal.getTime());
+			
+			cardList.add(card2);
+			
+			member.setCardList(cardList);
+			
+			cal.set(Calendar.YEAR, 1988);
+			cal.set(Calendar.MONTH, 10);
+			cal.set(Calendar.DAY_OF_MONTH, 7);
+			
+			member.setDateOfBirth(cal.getTime());
+			
+			model.addAttribute("member", member);
+			
+			return "registerValidation4Form";
+		} */
+	
+	/* 입력값 검증 규칙 
+	// 입력값 검증을 할 도메인 클래스에 @Validated를 지정한다.
+	@RequestMapping(value="/registerValidation3", method=RequestMethod.POST)
+	public String registerValidation3(@Validated Member member, BindingResult result) {
+		log.info("registerValidation3");
+		
+		// 입력값 검증 에러가 발생한 경우 true 를 반환한다.
+		log.info("result.hasErrors() = " + result.hasErrors());
+		
+		// 입력값 검증 후 BindingResult가 제공하는 메소드를 이용하여 검사결과를 확인한다.
+		if(result.hasErrors()) {
+			List<ObjectError> allErrors = result.getAllErrors();
+			List<ObjectError> globalErrors = result.getGlobalErrors();
+			List<FieldError> fieldErrors = result.getFieldErrors();
+		
+			log.info("allErrors.size() = " + allErrors.size());
+			log.info("globalErrors.size() = " + globalErrors.size());
+			log.info("fieldErrors.size() = " + fieldErrors.size());
+		
+			for(int i=0; i<allErrors.size(); i++) {
+				ObjectError objectError = allErrors.get(i);
+				log.info("all Error = " + objectError);
+			}
+			
+			for(int i=0; i<globalErrors.size(); i++) {
+				ObjectError objectError = globalErrors.get(i);
+				log.info("global Error = " + objectError);
+			}
+			
+			for(int i=0; i<fieldErrors.size(); i++) {
+				FieldError fieldError =fieldErrors.get(i);
+				log.info("field Error = " + fieldError);
+				log.info("field Error.getDefaultMessage() = " + fieldError.getDefaultMessage());
+			}
+			return "registerValidation3Form";
+		}
+		log.info("member.getUserId() = " + member.getUserId());
+		log.info("member.getGender() = " + member.getGender());
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/registerValidation3Form01", method=RequestMethod.GET)
+	public String registerValidation3Form01(Model model) {
+		log.info("registerValidation3Form01");
+		
+		model.addAttribute("member", new Member());
+		
+		return "registerValidation3Form";
+	}
+	
+	@RequestMapping(value="/registerValidation3Form02", method=RequestMethod.GET)
+	public String registerValidation3Form02(Model model) {
+		log.info("registerValidation3Form02");
+		
+		Member member = new Member();
+		
+		member.setPassword("1234");
+		member.setEmail("aaa@ccc.com");
+		member.setUserName("홍길동");
+		member.setGender("female");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, 1988);
+		cal.set(Calendar.MONTH, 10);
+		cal.set(Calendar.DAY_OF_MONTH, 7);
+	
+		member.setDateOfBirth(cal.getTime());
+		
+		model.addAttribute("member", member);
+		
+		return "registerValidation3Form";
+	} */
+	
+	/* 입력값 검증 결과
+	// 입력값 검증을 할 도메인 클래스에 @Validated를 지정한다.
+	@RequestMapping(value="/registerValidation2", method=RequestMethod.POST)
+	public String registerValidation2(@Validated Member member, BindingResult result) {
+		log.info("registerValidation2");
+		
+		// 입력값 검증 에러가 발생한 경우 true 를 반환한다.
+		log.info("result.hasErrors() = " + result.hasErrors());
+		
+		// 입력값 검증 후 BindingResult가 제공하는 메소드를 이용하여 검사결과를 확인한다.
+		if(result.hasErrors()) {
+			List<ObjectError> allErrors = result.getAllErrors();
+			List<ObjectError> globalErrors = result.getGlobalErrors();
+			List<FieldError> fieldErrors = result.getFieldErrors();
+		
+			log.info("allErrors.size() = " + allErrors.size());
+			log.info("globalErrors.size() = " + globalErrors.size());
+			log.info("fieldErrors.size() = " + fieldErrors.size());
+		
+			for(int i=0; i<allErrors.size(); i++) {
+				ObjectError objectError = allErrors.get(i);
+				log.info("all Error = " + objectError);
+			}
+			
+			for(int i=0; i<globalErrors.size(); i++) {
+				ObjectError objectError = globalErrors.get(i);
+				log.info("global Error = " + objectError);
+			}
+			
+			for(int i=0; i<fieldErrors.size(); i++) {
+				FieldError fieldError =fieldErrors.get(i);
+				log.info("field Error = " + fieldError);
+				log.info("field Error.getDefaultMessage() = " + fieldError.getDefaultMessage());
+			}
+			return "registerValidation2Form";
+		}
+		log.info("member.getUserId() = " + member.getUserId());
+		log.info("member.getGender() = " + member.getGender());
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/registerValidation2Form01", method=RequestMethod.GET)
+	public String registerValidation2Form01(Model model) {
+		log.info("registerValidation2Form01");
+		
+		model.addAttribute("member", new Member());
+		
+		return "registerValidation2Form";
+	}
+	
+	@RequestMapping(value="/registerValidation2Form02", method=RequestMethod.GET)
+	public String registerValidation2Form02(Model model) {
+		log.info("registerValidation2Form02");
+		
+		Member member = new Member();
+		
+		member.setPassword("1234");
+		member.setEmail("aaa@ccc.com");
+		member.setUserName("홍길동");
+		member.setGender("female");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, 1988);
+		cal.set(Calendar.MONTH, 10);
+		cal.set(Calendar.DAY_OF_MONTH, 7);
+	
+		member.setDateOfBirth(cal.getTime());
+		
+		model.addAttribute("member", member);
+		
+		return "registerValidation2Form";
+	} */
+	
+	
+	/* 입력값 검증 
+	// 입력값 검증을 할 도메인 클래스에 @Validated를 지정한다.
+	@RequestMapping(value="/registerValidation", method=RequestMethod.POST)
+	public String registerValidation(@Validated Member member, BindingResult result) {
+		log.info("registerValidation");
+		
+		if(result.hasErrors()) {
+			return "registerValidationForm";
+		}
+		
+		log.info("member.getUserId() = " + member.getUserId());
+		log.info("member.getGender() = " + member.getGender());
+		
+		return "success";
+	}
+	
+	@RequestMapping(value = "/registerValidationForm01", method=RequestMethod.GET)
+	public String registerForm01(Model model) {
+		log.info("registerValidationForm01");
+		
+		model.addAttribute("member", new Member());
+		
+		return "registerValidationForm";
+	}
+	
+	@RequestMapping(value="/registerValidationForm02", method=RequestMethod.GET)
+	public String registerForm02(Model model) {
+		log.info("registerValidationForm02");
+		
+		Member member = new Member();
+		
+		member.setPassword("1234");
+		member.setEmail("aaa@ccc.com");
+		member.setUserName("홍길동");
+		member.setGender("female");
+		
+		model.addAttribute("member", member);
+		
+		return "registerValidationForm";
+	}*/
+	
+	/* 입력값 검증 에러 
+	@RequestMapping(value="/registerSpringFormErrors", method=RequestMethod.GET)
+	public String registerSpringFormErrors(Model model) {
+		log.info("registerSpringFormErrors");
+		
+		Member member =new Member();
+		
+		member.setEmail("aaa@ccc.com");
+		member.setUserName("홍길동");
+		
+		model.addAttribute("member", member);
+		
+		return "registerSpringFormErrors";
+	}
+	
+	// 입력 처리
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public String register(@Validated Member member, BindingResult result) {
+		log.info("register");
+		
+		// 에러 처리
+		if(result.hasErrors()) {
+			return "registerSpringFormErrors";	
+		}
+		
+		log.info("member.getUserId() = " + member.getUserId());
+		log.info("member.getUserName() = " + member.getUserName());
+		log.info("member.getEmail() = " + member.getEmail());
+		
+		return "errorsResult";
+	} */
+	
+	/* 숨겨진 필드 요소
+	@RequestMapping(value="/registerSpringFormHidden", method=RequestMethod.GET)
+	public String registerSpringFormHidden(Model model) {
+		log.info("registerSpringFormHidden");
+		
+		Member member = new Member();
+		
+		member.setUserId("hong");
+		member.setUserName("홍길동");
+		
+		model.addAttribute("member", member);
+		
+		return "registerSpringFormHidden";
+	}
+	
+	// 입력 처리
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public String register(Member member, Model model) {
+		log.info("register");
+		
+		log.info("member.getUserId() = " + member.getUserId());
+		log.info("member.getUserName() = " + member.getUserName());
+		
+		return "hiddenResult";
+	} */
+	
+	/* 셀렉트 박스 요소 
 	@RequestMapping(value="/registerSpringFormSelect01", method=RequestMethod.GET)
 	public String registerSpringFormSelect01(Model model) {
 		log.info("registerSpringFormSelect01");
@@ -83,17 +434,70 @@ public class MemberController {
 		return "registerSpringFormSelect03";
 	}
 	
+	@RequestMapping(value="/registerSpringFormSelect04", method=RequestMethod.GET)
+	public String registerSpringFormSelect04(Model model) {
+		log.info("registerSpringFormSelect04");
+		
+		List<CodeLabelValue> carCodeList = new ArrayList<CodeLabelValue>();
+		carCodeList.add(new CodeLabelValue("01", "Volvo"));
+		carCodeList.add(new CodeLabelValue("02", "Saab"));
+		carCodeList.add(new CodeLabelValue("03", "Opel"));
+		
+
+		model.addAttribute("carCodeList", carCodeList);
+		model.addAttribute("member", new Member());
+		
+		return "registerSpringFormSelect04";
+	}
+	
+	@RequestMapping(value="/registerSpringFormSelect05", method=RequestMethod.GET)
+	public String registerSpringFormSelect05(Model model) {
+		log.info("registerSpringFormSelect05");
+		
+		List<CodeLabelValue> carCodeList = new ArrayList<CodeLabelValue>();
+		carCodeList.add(new CodeLabelValue("01", "Volvo"));
+		carCodeList.add(new CodeLabelValue("02", "Saab"));
+		carCodeList.add(new CodeLabelValue("03", "Opel"));
+		
+
+		model.addAttribute("carCodeList", carCodeList);
+		model.addAttribute("member", new Member());
+		
+		return "registerSpringFormSelect05";
+	}
+	
 	// 입력 처리
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(Member member, Model model) {
 		log.info("register");
 		
-		log.info("member.getGender() = " + member.getGender());
+		log.info("member.getNationality() = " + member.getNationality());
 		
-		model.addAttribute("member", member);
+		model.addAttribute("nationality", member.getNationality());
 		
-		return "radiobuttonResult";
-	}   
+		return "selectResult";
+	}
+	
+	// 입력 처리2
+	@RequestMapping(value="/register2", method=RequestMethod.POST)
+	public String register2(Member member, Model model) {
+		log.info("register2");
+		
+		List<String> carList = member.getCarList();
+		
+		if(carList != null) {
+			log.info("carList != null = " + carList.size());
+			
+			for(int i=0; i<carList.size(); i++) {
+				log.info("carList(" + i + ") = " + carList.get(i));
+			}	
+		}else {
+			log.info("carList == null");
+		}
+		model.addAttribute("carList", member.getCarList());
+		
+		return "selectResult2";
+	} */
 	
 	/* 라디오 버튼 요소
 	@RequestMapping(value="/registerSpringFormRadiobutton01", method=RequestMethod.GET)

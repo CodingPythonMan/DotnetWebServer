@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,10 @@ public class HomeController {
 	}
 	
 	/* home 설정
-	@GetMapping(value="/")
+	@Autowired
+	private MessageSource messageSource;
+	
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		//info 레벨의 로그를 출력한다.
 		log.info("환영합니다. 클라이언트 지역은 " + locale + "입니다.");
@@ -40,6 +45,18 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
+		
+		return "home";
+	}
+	
+	@RequestMapping(value="/welcome", method=RequestMethod.GET)
+	public String welcome() {
+		//미리 정의된 메시지에 값을 넘겨준다.
+		String[] args = {"이순신"};
+		
+		// 스프링 프레임워크로부터 MessageSource를 주입받은 다음 getMessage 메소드를 호출한다.
+		String message = messageSource.getMessage("welcome.message", args, Locale.KOREAN);
+		log.info("Welcome message : " + message);
 		
 		return "home";
 	}
@@ -93,7 +110,7 @@ public class HomeController {
 		Member member = new Member();
 		
 		return member;
-	}*/
+	} */
 	
 	/*
 	@ResponseBody
