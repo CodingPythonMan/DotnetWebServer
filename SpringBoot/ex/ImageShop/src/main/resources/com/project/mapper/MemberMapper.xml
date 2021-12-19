@@ -77,4 +77,37 @@
 		from member mem left outer join member_auth auth on mem.user_no = auth.user_no
 		where mem.user_no = #{userNo}
 	</select>
+	
+	<!-- 권한 수정 -->
+	<insert id="modifyAuth">
+		insert into member_auth
+		(
+			user_no,
+			auth
+		)
+		values(
+			#{userNo},
+			#{auth}
+		)
+	</insert>
+	
+	<!-- 수정 처리 -->
+	<update id="update">
+		update member
+		set user_name=#{userName},
+		job=#{job}
+		where user_no = #{userNo}
+	</update>
+	
+	<!-- 삭제 처리 -->
+	<delete id="delete">
+		delete from member
+		where user_no = #{userNo}
+	</delete>
+	
+	<!-- 권한 삭제 -->
+	<delete id="deleteAuth">
+		delete from member_auth
+		where user_no = #{userNo}
+	</delete>
 </mapper>
