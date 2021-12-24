@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.mapper.NoticeMapper">
+	<!-- 공지사항 등록 처리 -->
+	<insert id="create">
+		insert into notice(
+			notice_no,
+			title,
+			content
+		)values(
+			notice_seq.nextval,
+			#{title},
+			#{content}
+		)
+	</insert>
+	
+	<!-- 공지사항 목록 조회 -->
+	<select id="list" resultType="Notice">
+		<![CDATA[
+		select notice_no,
+			title,
+			content,
+			reg_date
+		from notice
+		where notice_no > 0
+		order by notice_no desc,
+			reg_date desc
+		]]>
+	</select>
+	
+	<!-- 공지사항 상세 조회 -->
+	<select id="read" resultType="Notice">
+		select notice_no,
+			title,
+			content,
+			reg_date
+		from notice
+		where notice_no = #{noticeNo}
+	</select>
+	
+	<!-- 공지사항 수정 처리 -->
+	<update id="update">
+		update notice
+		set title =#{title},
+			content =#{content}
+		where notice_no = #{noticeNo}
+	</update>
+	
+	<!-- 공지사항 삭제 처리 -->
+	<delete id="delete">
+		delete from notice
+		where notice_no=#{noticeNo}
+	</delete>
+</mapper>
