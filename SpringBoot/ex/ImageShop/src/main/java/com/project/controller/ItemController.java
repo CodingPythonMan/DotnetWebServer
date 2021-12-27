@@ -50,7 +50,7 @@ public class ItemController {
 	@Autowired
 	private MessageSource messageSource;
 	
-	@Value("${upload.path")
+	@Value("${upload.path}")
 	private String uploadPath;
 	
 	// 상품 등록 페이지

@@ -40,17 +40,20 @@ public class UserItemServiceImpl implements UserItemService {
 		payCoin.setUserNo(userNo);
 		payCoin.setItemId(itemId);
 		payCoin.setAmount(price);
+		
+		coinMapper.pay(payCoin); // 코인 지급
+		coinMapper.createPayHistory(payCoin); // 구매 내역 등록
+		
+		mapper.create(userItem);
 	}
 
 	@Override
-	public UserItem read(Integer userItemNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public UserItem read(String userItemNo) throws Exception {
+		return mapper.read(userItemNo);
 	}
 
 	@Override
 	public List<UserItem> list(Integer userNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.list(userNo);
 	}
 }

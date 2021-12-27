@@ -11,7 +11,7 @@ public interface UserItemService {
 	public void register(Member member, Item item) throws Exception;
 	
 	// 구매 상품 보기
-	public UserItem read(Integer userItemNo) throws Exception;
+	public UserItem read(String userItemNo) throws Exception;
 
 	// 구매 상품 목록
 	public List<UserItem> list(Integer userNo) throws Exception;

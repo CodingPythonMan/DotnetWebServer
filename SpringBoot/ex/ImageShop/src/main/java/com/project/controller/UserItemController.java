@@ -49,7 +49,7 @@ public class UserItemController {
 	// 구매 상품 보기
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
-	public void read(int userItemNo, Model model) throws Exception{
+	public void read(String userItemNo, Model model) throws Exception{
 		model.addAttribute(service.read(userItemNo));
 	}
 	
@@ -57,7 +57,7 @@ public class UserItemController {
 	@ResponseBody
 	@RequestMapping("/download")
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
-	public ResponseEntity<byte[]> download(int userItemNo, Authentication authentication) throws Exception{
+	public ResponseEntity<byte[]> download(String userItemNo, Authentication authentication) throws Exception{
 		UserItem userItem = service.read(userItemNo);
 		
 		String fullName= userItem.getPictureUrl();

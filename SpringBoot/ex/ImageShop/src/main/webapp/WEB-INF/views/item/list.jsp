@@ -60,7 +60,7 @@
 					<a href="remove?itemId=${item.itemId }"><spring:message code="item.remove" /></a>
 					</td>			
 				</sec:authorize>
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<sec:authorize access="hasRole('ROLE_MEMBER')">
 					<td align="center">
 					<a href="read?itemId=${item.itemId }"><spring:message code="item.read" /></a>
 					</td>		
