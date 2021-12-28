@@ -128,3 +128,25 @@ create table pay_coin_history(
 create sequence pay_coin_history_seq
 start with 1
 increment by 1;
+
+-- 공개자료 테이블
+create table pds(
+    item_id number(5) not null,
+    item_name varchar2(20),
+    view_cnt number(6) default 0,
+    description varchar2(50),
+    primary key(item_id)
+);
+
+create sequence pds_seq
+start with 1
+increment by 1;
+
+-- 자료파일 테이블
+create table pds_attach(
+    fullName varchar2(150) not null,
+    item_id number(5) not null,
+    down_cnt number(6) default 0,
+    regdate date default sysdate,
+    primary key(fullName)
+);

@@ -17,7 +17,7 @@
 	</insert>
 	
 	<!-- 구매 내역 상세 조회 -->
-	<select id="read" resultType="UserItem" parameterType="java.lang.String">
+	<select id="read" resultType="UserItem">
 		select a.user_item_no,
 			a.user_no,
 			a.item_id,

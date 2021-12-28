@@ -9,7 +9,7 @@ public interface UserItemMapper {
 	public void create(UserItem userItem) throws Exception;
 
 	// 구매 상품 상세 페이지
-	public UserItem read(String userItemNo) throws Exception;
+	public UserItem read(Integer userItemNo) throws Exception;
 
 	// 구매 상품 목록 페이지
 	public List<UserItem> list(Integer userNo) throws Exception;

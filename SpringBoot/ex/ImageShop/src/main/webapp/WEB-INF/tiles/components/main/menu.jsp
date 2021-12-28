@@ -15,6 +15,8 @@
 				<td width="120"><a href="/notice/list"><spring:message code="menu.notice.member" /></a></td>
 				<!-- 상품 관리를 메뉴에 추가한다. -->
 				<td width="120"><a href="/item/list"><spring:message code="menu.item.member" /></a></td>
+				<!-- 자료실을 메뉴에 추가한다. -->
+				<td width="120"><a href="/pds/list"><spring:message code="menu.pds.member" /></a></td>
 			</sec:authorize>
 			<!-- 인증된 사용자인 경우 true -->
 			<sec:authorize access="isAuthenticated()">
@@ -32,6 +34,8 @@
 					<td width="120"><a href="/notice/list"><spring:message code="menu.notice.admin" /></a></td>
 					<!-- 상품 관리를 메뉴에 추가한다. -->
 					<td width="120"><a href="/item/list"><spring:message code="menu.item.admin" /></a></td>
+					<!-- 자료실을 메뉴에 추가한다. -->
+					<td width="120"><a href="/pds/list"><spring:message code="menu.pds.admin" /></a></td>
 				</sec:authorize>
 				<!-- 회원 권한을 가진 사용자인 경우 true -->
 				<sec:authorize access="hasRole('ROLE_MEMBER')">
@@ -47,6 +51,8 @@
 					<!-- 구매 상품과 구매 내역을 메뉴에 추가한다. -->
 					<td width="120"><a href="/useritem/list"><spring:message code="menu.useritem.list" /></a></td>
 					<td width="120"><a href="/coin/listPay"><spring:message code="menu.coin.listPay" /></a></td>				
+					<!-- 자료실에 메뉴를 추가한다. -->
+					<td width="120"><a href="/pds/list"><spring:message code="menu.pds.member" /></a></td>
 				</sec:authorize>
 			</sec:authorize>
 		</tr>

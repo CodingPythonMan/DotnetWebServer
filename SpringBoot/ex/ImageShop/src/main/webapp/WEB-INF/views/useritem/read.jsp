@@ -5,7 +5,7 @@
 
 <h2><spring:message code="useritem.header.read" /></h2>
 
-<form:form modelAttribute="useritem">
+<form:form modelAttribute="userItem">
 	<form:hidden path="userItemNo" />
 	
 	<table>
@@ -37,7 +37,7 @@
 
 <script>
 	$(function(){
-		var formObj = ${"#useritem"};
+		var formObj = $("#useritem");
 		
 		$("#btnList").on("click", function(){
 			self.location = "list";

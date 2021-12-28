@@ -48,7 +48,7 @@ public class UserItemServiceImpl implements UserItemService {
 	}
 
 	@Override
-	public UserItem read(String userItemNo) throws Exception {
+	public UserItem read(Integer userItemNo) throws Exception {
 		return mapper.read(userItemNo);
 	}
 
