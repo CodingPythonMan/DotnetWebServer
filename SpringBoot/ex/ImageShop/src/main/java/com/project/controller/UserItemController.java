@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.common.security.domain.CustomUser;
 import com.project.domain.Member;
 import com.project.domain.UserItem;
+import com.project.exception.NotMyItemException;
 import com.project.service.UserItemService;
 
 @Controller
@@ -60,6 +61,14 @@ public class UserItemController {
 	public ResponseEntity<byte[]> download(int userItemNo, Authentication authentication) throws Exception{
 		UserItem userItem = service.read(userItemNo);
 		
+		// 구매한 상품이 사용자의 것인지 체크한다.
+		CustomUser customUser = (CustomUser) authentication.getPrincipal();
+		Member member = customUser.getMember();
+		
+		if(userItem.getUserNo() != member.getUserNo()) {
+			throw new NotMyItemException("이것은 나의 구매 상품이 아니다.");
+		}
+		
 		String fullName= userItem.getPictureUrl();
 		
 		InputStream in = null;
@@ -84,5 +93,12 @@ public class UserItemController {
 		}
 		
 		return entity;
+	}
+	
+	// 본인 상품 예외 처리
+	@RequestMapping(value="/notMyItem", method=RequestMethod.GET)
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
+	public void notMyItem(Model model) throws Exception{
+		
 	}
 }

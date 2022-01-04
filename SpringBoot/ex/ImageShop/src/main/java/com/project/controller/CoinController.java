@@ -88,4 +88,11 @@ public class CoinController {
 		
 		model.addAttribute("list", service.listPayHistory(userNo));
 	}
+	
+	// 코인 부족 예외 처리
+	@RequestMapping(value="/notEnoughCoin", method=RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	public void notEnoughCoin(Model model) throws Exception{
+		
+	}
 }
