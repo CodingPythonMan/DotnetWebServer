@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shared.Services.Config
 {
-    internal class ConfigService
+    public class ConfigService
     {
+        static public WebServerConfig _webServerConfig = null!;
     }
 }
