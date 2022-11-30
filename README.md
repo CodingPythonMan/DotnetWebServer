@@ -1,2 +1,2 @@
-# Spring 및 Spring Boot 예제
+# Nanarachi
 - Gitignore 추가
