@@ -1,4 +1,4 @@
-namespace Webserver.Data
+namespace Game.Data
 {
     public class WeatherForecast
     {
