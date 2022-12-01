@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components;
 
 namespace Game.Features.Identity.Components
 {
@@ -15,7 +15,7 @@ namespace Game.Features.Identity.Components
         {
             var state = await _AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-            if(false == state.User.Identity.IsAuthenticated)
+            if (false == state.User.Identity.IsAuthenticated)
             {
                 _NavigationManager.NavigateTo($"/account/signin?returnUrl={System.Net.WebUtility.UrlEncode(new Uri(_NavigationManager.Uri).PathAndQuery)}");
             }

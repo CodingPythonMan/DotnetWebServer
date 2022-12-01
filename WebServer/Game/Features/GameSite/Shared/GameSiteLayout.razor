@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+
+@using Game.Features.GameSite.Component
+
+<body>
+	<div class="wrapper">
+		<AuthorizeView>
+			<Authorized>
+				@Body
+			</Authorized>
+			<NotAuthorized>
+				<Login />
+			</NotAuthorized>
+		</AuthorizeView>
+
+		<persist-component-state />
+	</div>
+</body>
+
+
