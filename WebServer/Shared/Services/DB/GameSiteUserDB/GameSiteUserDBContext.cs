@@ -13,6 +13,10 @@ namespace Shared.Services.DB.GameSiteUserDB
         public DbSet<TGameSiteUsers> TGameSiteUsers { get; set; } = null!;
         public DbSet<TGameSiteUserRoles> TGameSiteUserRoles { get; set; } = null!;
         public DbSet<TGameSiteRoles> TGameSiteRoles { get; set; } = null!;
+        public DbSet<TGameSiteRoleClaims> TGameSiteRoleClaims { get; set; } = null!;
+        public DbSet<TGameSiteUserClaims> TGameSiteUserClaims { get; set; } = null!;
+        public DbSet<TGameSiteUserLogins> TGameSiteUserLogins { get; set; } = null!;
+        public DbSet<TGameSiteUserTokens> TGameSiteUserTokens { get; set; } = null!;
 
         public GameSiteUserDBContext(DbContextOptions<GameSiteUserDBContext> options) : base(options)
         {
@@ -31,6 +35,18 @@ namespace Shared.Services.DB.GameSiteUserDB
 
             modelBuilder.Entity<TGameSiteUserRoles>()
                 .HasKey(c => new { c.UserId, c.RoleId});
+
+            modelBuilder.Entity<TGameSiteUserTokens>()
+                .HasKey(c => new { c.UserId, c.LoginProvider, c.Name });
+
+            modelBuilder.Entity<TGameSiteUserClaims>()
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<TGameSiteUserLogins>()
+                .HasKey(c => new { c.LoginProvider, c.ProviderKey });
+
+            modelBuilder.Entity<TGameSiteRoleClaims>()
+                .HasKey(c => c.Id);
         }
     }
 }
