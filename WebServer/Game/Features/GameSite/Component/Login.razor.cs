@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Game.Features.Identity.Model;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,13 +12,10 @@ namespace Game.Features.GameSite.Component
         [Inject]
         NavigationManager _NavigationManager { get; set; } = null!;
 
-
-        /*
         [Inject]
-        SignInManager<Object> _SignInManager { get; set; } = null!;
-
+        private UserManager<GameSiteUser> _UserManager { get; set; } = null!;
         [Inject]
-        UserManager<Object> _UserManager { get; set; } = null!;*/
+        private IDataProtectionProvider _DataProtectionProvider { get; set; } = null!;
 
         public class LoginModel
         {
@@ -29,18 +28,33 @@ namespace Game.Features.GameSite.Component
 
         LoginModel _input = new();
 
-        void _OnSubmit(EditContext context)
+        private async Task _OnSubmit(EditContext context)
         {
-            /*if(false == context.Validate())
+            var user = await _UserManager.FindByEmailAsync(_input.Email);
+
+            if(user is null)
             {
-                
-            }*/
+                return;
+            }
 
-           // var identityUser = _UserManager.FindByIdAsync();
+            bool isValid = await _UserManager.CheckPasswordAsync(user, _input.Password);
 
-            //_SignInManager.SignInAsync().GetAwaiter();
+            if (isValid is false)
+            {
+                return;
+            }
 
-            _NavigationManager.NavigateTo("/", true);
+            var token = await _UserManager.GenerateUserTokenAsync(user, TokenOptions.DefaultProvider, "SignIn");
+
+            var returnUrl = "/";
+
+            var data = $"{user.Id}|{token}|{returnUrl}";
+
+            var protector = _DataProtectionProvider.CreateProtector("SignIn");
+
+            var passData = protector.Protect(data);
+
+            _NavigationManager.NavigateTo($"/account/signin?data={passData}", true);
         }
     }
 }

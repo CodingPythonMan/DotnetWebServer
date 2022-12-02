@@ -14,5 +14,7 @@ namespace Shared.Services.DB.GameSiteUserDB.Table
         [Key]
         public Int64 Id { get; set; }
         public string Name { get; set; } = null!;
+        public string NormalizedName { get; set; } = null!;
+        public string ConcurrencyStamp { get; set; } = null!;
     }
 }
