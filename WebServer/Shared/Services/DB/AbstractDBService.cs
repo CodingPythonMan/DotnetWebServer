@@ -11,6 +11,8 @@ namespace Shared.Services.DB
     public abstract class AbstractDBService<ContextType> : IDBService where ContextType : DbContext
     {
         public List<string> TableNameList { get; set; } = new();
+        public int ShardID { get; set; } = 0;
+        protected List<DbContextOptions<ContextType>> _contextOptions = new();
 
         public abstract ContextType GetContext();
         protected abstract void SetDBContext(DBConnectStringService dBConnectStringService);

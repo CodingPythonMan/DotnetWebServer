@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Services.DB.GameUserDB
+namespace Shared.Base.Common
 {
-    public class GameUserDBService
+    public class Defines
     {
-
+        public const int GameSiteUserDB = 15000;
     }
 }
