@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using System.ComponentModel.DataAnnotations;
 
 namespace Game.Features.GameSite.Component
@@ -55,6 +56,11 @@ namespace Game.Features.GameSite.Component
             var passData = protector.Protect(data);
 
             _NavigationManager.NavigateTo($"/account/signin?data={passData}", true);
+        }
+
+        public void SteamLogin()
+        {
+            _NavigationManager.NavigateTo($"/account/steamsignin", true);
         }
     }
 }

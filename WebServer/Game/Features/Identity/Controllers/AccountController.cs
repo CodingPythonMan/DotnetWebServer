@@ -1,4 +1,5 @@
 ﻿using Game.Features.Identity.Model;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
@@ -47,6 +48,12 @@ namespace Game.Features.Identity.Controllers
             {
                 return Unauthorized("STOP!");
             }
+        }
+
+        [HttpGet("account/steamsignin")]
+        public IActionResult SteamSignIn()
+        {
+            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "Steam");
         }
 
         [Authorize]

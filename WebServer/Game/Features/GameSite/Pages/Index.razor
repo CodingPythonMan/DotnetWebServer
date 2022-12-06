@@ -1,1 +1,11 @@
 ﻿@page "/"
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Context
+
+<p>
+    @foreach (var claim in Context.HttpContext.User.Claims)
+    {
+        <div><code>@claim.Type</code>: <strong>@claim.Value</strong></div>
+    }
+</p>
