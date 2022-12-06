@@ -49,11 +49,17 @@ namespace Game.Features.Identity.Controllers
                 return Unauthorized("STOP!");
             }
         }
-
+        
         [HttpGet("account/steamsignin")]
         public IActionResult SteamSignIn()
         {
             return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "Steam");
+        }
+
+        [HttpGet("account/googlesignin")]
+        public IActionResult GoogleSignIn()
+        {
+            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "Google");
         }
 
         [Authorize]

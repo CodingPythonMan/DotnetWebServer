@@ -2,7 +2,7 @@
     <div class="d-flex align-items-center">
         <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
         <RadzenLabel Text="Nanarachi" />
-        <RadzenButton ButtonStyle="ButtonStyle.Secondary">Logout</RadzenButton>
+        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Click=Logout>Logout</RadzenButton>
     </div>
 </RadzenHeader>
 <RadzenSidebar @bind-Expanded="@sidebarExpanded">

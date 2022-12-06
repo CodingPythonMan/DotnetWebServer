@@ -1,4 +1,5 @@
 ﻿using Game.Features.Identity.Model;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.DataProtection;
@@ -17,6 +18,9 @@ namespace Game.Features.GameSite.Component
         private UserManager<GameSiteUser> _UserManager { get; set; } = null!;
         [Inject]
         private IDataProtectionProvider _DataProtectionProvider { get; set; } = null!;
+
+        [Inject]
+        IHttpContextAccessor _HttpContextAccessor { get; set; } = null!;
 
         public class LoginModel
         {
@@ -61,6 +65,14 @@ namespace Game.Features.GameSite.Component
         public void SteamLogin()
         {
             _NavigationManager.NavigateTo($"/account/steamsignin", true);
+        }
+
+        public async Task GoogleLogin()
+        {
+            _NavigationManager.NavigateTo($"/account/googlesignin", true);
+
+            /*var accessToken = await _HttpContextAccessor.HttpContext.GetTokenAsync(
+            GoogleDefaults.AuthenticationScheme, "access_token");*/
         }
     }
 }
