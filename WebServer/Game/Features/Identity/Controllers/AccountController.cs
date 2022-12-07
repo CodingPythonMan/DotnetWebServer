@@ -1,5 +1,6 @@
 ﻿using Game.Features.Identity.Model;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
@@ -49,17 +50,20 @@ namespace Game.Features.Identity.Controllers
                 return Unauthorized("STOP!");
             }
         }
-        
-        [HttpGet("account/steamsignin")]
-        public IActionResult SteamSignIn()
-        {
-            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "Steam");
-        }
 
         [HttpGet("account/googlesignin")]
         public IActionResult GoogleSignIn()
         {
-            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "Google");
+            var properties = new AuthenticationProperties()
+            {
+                RedirectUri = "/",
+
+                // prompt=consent : 매번 권한 요청 및 승인 시 RefreshToken 획득
+                // prompt=login : 최초 권한 승인만 RefreshToken 획득
+                Parameters = { { "prompt", "consent" } },
+            };
+
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         }
 
         [Authorize]

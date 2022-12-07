@@ -19,9 +19,6 @@ namespace Game.Features.GameSite.Component
         [Inject]
         private IDataProtectionProvider _DataProtectionProvider { get; set; } = null!;
 
-        [Inject]
-        IHttpContextAccessor _HttpContextAccessor { get; set; } = null!;
-
         public class LoginModel
         {
             [Required]
@@ -62,17 +59,9 @@ namespace Game.Features.GameSite.Component
             _NavigationManager.NavigateTo($"/account/signin?data={passData}", true);
         }
 
-        public void SteamLogin()
-        {
-            _NavigationManager.NavigateTo($"/account/steamsignin", true);
-        }
-
-        public async Task GoogleLogin()
+        public void GoogleLogin()
         {
             _NavigationManager.NavigateTo($"/account/googlesignin", true);
-
-            /*var accessToken = await _HttpContextAccessor.HttpContext.GetTokenAsync(
-            GoogleDefaults.AuthenticationScheme, "access_token");*/
         }
     }
 }
