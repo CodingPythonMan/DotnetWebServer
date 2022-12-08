@@ -1,4 +1,5 @@
-﻿using Game.Features.Identity.Model;
+﻿using Game.Features.GameSite.Dialog;
+using Game.Features.Identity.Model;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -7,7 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Radzen;
 using Shared.Base.Common;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 namespace Game.Features.GameSite.Component
 {
@@ -22,6 +25,8 @@ namespace Game.Features.GameSite.Component
         private IDataProtectionProvider _DataProtectionProvider { get; set; } = null!;
         [Inject]
         private NotificationService _NotificationService { get; set; } = null!;
+        [Inject]
+        DialogService _DialogService { get; set; } = null!;
 
         public class LoginModel
         {
@@ -115,6 +120,13 @@ namespace Game.Features.GameSite.Component
         public void GoogleLogin()
         {
             _NavigationManager.NavigateTo($"/account/googlesignin", true);
+        }
+
+        public async Task Register()
+        {
+            await _DialogService.OpenAsync<RegisterDialog>("Closeable from overlay Dialog",
+                 new Dictionary<string, object>(), 
+                 new DialogOptions() { Width = "700px", Height = "512px", Resizable = true, Draggable = true });
         }
     }
 }

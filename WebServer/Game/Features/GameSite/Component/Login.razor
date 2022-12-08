@@ -4,8 +4,16 @@
 		<InputText placeholder="ID" @bind-Value="_input.Email" />
 		<InputText placeholder="Password" @bind-Value="_input.Password" type="password" />
 		<!--<button class="btn btn-primary" type="submit">Login</button>-->
-		<RadzenButton Text="Login" type="submit" />
-	</EditForm>
 
-	<RadzenButton Text="구글 로그인" Click=@GoogleLogin />
+		<div>
+			<RadzenButton Style="width: 100%" Text="Login" type="submit" />
+		</div>
+		<div>
+			<RadzenButton Style="width: 100%" Text="Google Login" Click=@GoogleLogin type="button" />
+		</div>
+		<div>
+			<RadzenButton Style="width: 100%" Text="Register" Click=@Register type="button" />
+		</div>
+	</EditForm>
+	
 </div>
