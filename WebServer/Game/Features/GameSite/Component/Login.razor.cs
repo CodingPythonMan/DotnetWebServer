@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Radzen;
+using Shared.Base.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace Game.Features.GameSite.Component
@@ -18,6 +20,8 @@ namespace Game.Features.GameSite.Component
         private UserManager<GameSiteUser> _UserManager { get; set; } = null!;
         [Inject]
         private IDataProtectionProvider _DataProtectionProvider { get; set; } = null!;
+        [Inject]
+        private NotificationService _NotificationService { get; set; } = null!;
 
         public class LoginModel
         {
@@ -32,31 +36,80 @@ namespace Game.Features.GameSite.Component
 
         private async Task _OnSubmit(EditContext context)
         {
-            var user = await _UserManager.FindByEmailAsync(_input.Email);
-
-            if(user is null)
+            if (false == context.Validate())
             {
-                return;
+                string message = context.GetValidationMessages().FirstOrDefault()!;
+
+                if (false == string.IsNullOrEmpty(message))
+                {
+                    ShowNotify(message, NotificationSeverity.Error);
+                    return;
+                }
             }
 
-            bool isValid = await _UserManager.CheckPasswordAsync(user, _input.Password);
+            ErrorResult result = await LoginProcess();
 
-            if (isValid is false)
+            switch (result)
             {
-                return;
+                case ErrorResult.SUCCESS:
+                    break;
+                case ErrorResult.ERROR_USER_NOT_FOUND:
+                    ShowNotify("ERROR_USER_NOT_FOUND", NotificationSeverity.Error);
+                    break;
+                case ErrorResult.ERROR_INVAILD_PASSWORD:
+                    ShowNotify("ERROR_INVAILD_PASSWORD", NotificationSeverity.Error);
+                    break;
+                default:
+                    ShowNotify(result.ToString(), NotificationSeverity.Error);
+                    break;
             }
+        }
 
-            var token = await _UserManager.GenerateUserTokenAsync(user, TokenOptions.DefaultProvider, "SignIn");
+        private async Task<ErrorResult> LoginProcess()
+        {
+            ErrorResult result = ErrorResult.FAIL;
 
-            var returnUrl = "/";
+            do
+            {
+                var user = await _UserManager.FindByEmailAsync(_input.Email);
 
-            var data = $"{user.Id}|{token}|{returnUrl}";
+                if (user == null)
+                {
+                    result = ErrorResult.ERROR_USER_NOT_FOUND;
+                    break;
+                }
 
-            var protector = _DataProtectionProvider.CreateProtector("SignIn");
+                bool isVaild = await _UserManager.CheckPasswordAsync(user, _input.Password);
 
-            var passData = protector.Protect(data);
+                if (false == isVaild)
+                {
+                    result = ErrorResult.ERROR_INVAILD_PASSWORD;
+                    break;
+                }
 
-            _NavigationManager.NavigateTo($"/account/signin?data={passData}", true);
+                var token = await _UserManager.GenerateUserTokenAsync(user, TokenOptions.DefaultProvider, "SignIn");
+                var returnUrl = "/";
+                var data = $"{user.Id}|{token}|{returnUrl}";
+
+                var protector = _DataProtectionProvider.CreateProtector("SignIn");
+                var passData = protector.Protect(data);
+
+                _NavigationManager.NavigateTo($"/account/signin?data={passData}", true);
+
+                result = ErrorResult.SUCCESS;
+
+            } while (false);
+
+            return result;
+        }
+
+        void ShowNotify(string message, NotificationSeverity severity = NotificationSeverity.Success)
+        {
+            _NotificationService.Notify(new NotificationMessage()
+            {
+                Severity = severity,
+                Summary = message,
+            });
         }
 
         public void GoogleLogin()
