@@ -41,7 +41,7 @@ namespace Game.Features.GameSite.Component
 
         private async Task _OnSubmit(EditContext context)
         {
-            if (false == context.Validate())
+            if (context.Validate() is false)
             {
                 string message = context.GetValidationMessages().FirstOrDefault()!;
 
@@ -69,6 +69,31 @@ namespace Game.Features.GameSite.Component
                     break;
             }
         }
+
+        private async Task _OnLogin(LoginArgs args)
+        {
+            _input.Email = args.Username;
+            _input.Password = args.Password;
+
+            ErrorResult result = await LoginProcess();
+
+            switch (result)
+            {
+                case ErrorResult.SUCCESS:
+                    break;
+                case ErrorResult.ERROR_USER_NOT_FOUND:
+                    ShowNotify("ERROR_USER_NOT_FOUND", NotificationSeverity.Error);
+                    break;
+                case ErrorResult.ERROR_INVAILD_PASSWORD:
+                    ShowNotify("ERROR_INVAILD_PASSWORD", NotificationSeverity.Error);
+                    break;
+                default:
+                    ShowNotify(result.ToString(), NotificationSeverity.Error);
+                    break;
+            }
+        }
+
+
 
         private async Task<ErrorResult> LoginProcess()
         {
@@ -122,7 +147,7 @@ namespace Game.Features.GameSite.Component
             _NavigationManager.NavigateTo($"/account/googlesignin", true);
         }
 
-        public async Task Register()
+        public async Task _Register()
         {
             await _DialogService.OpenAsync<RegisterDialog>("Closeable from overlay Dialog",
                  new Dictionary<string, object>(), 

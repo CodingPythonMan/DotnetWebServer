@@ -6,9 +6,9 @@
 }
 
 .login_form form {
-  min-width: 300px;
-  max-width: 300px;
-  width: 300px;
+  min-width: 500px;
+  max-width: 500px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   gap: 10px;
