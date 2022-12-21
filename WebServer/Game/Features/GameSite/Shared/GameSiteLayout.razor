@@ -2,29 +2,13 @@
 
 @using Game.Features.GameSite.Component
 
-<RadzenDialog />
-<RadzenNotification />
-
 <AuthorizeView>
 	<Authorized>
-	 <div class="row">
-		<RadzenLayout class="rz-shadow-3">
-			<NavMenu />
-			<RadzenBody>
-				<div class="p-2">
-					@Body
-				</div>
-			</RadzenBody>
-			<RadzenFooter>
-				<Footer />
-			</RadzenFooter>
-		</RadzenLayout>
-	</div>
+		@Body
 	</Authorized>
 	<NotAuthorized>
 		<Login />
 	</NotAuthorized>
 </AuthorizeView>
+
 <persist-component-state />
-
-

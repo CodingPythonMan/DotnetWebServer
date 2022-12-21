@@ -1,43 +1,16 @@
-﻿<!--<div class="login_form">
+﻿<div class="login_form">
 	<EditForm class="contents" Model="_input" OnSubmit=@_OnSubmit>
 		<DataAnnotationsValidator />
 		<InputText placeholder="ID" @bind-Value="_input.Email" />
 		<InputText placeholder="Password" @bind-Value="_input.Password" type="password" />
-
+		<button class="btn btn-primary" style="width: 100%" type="submit">Login</button>
 		<div>
-			<RadzenButton Style="width: 100%" Text="Login" type="submit" />
 		</div>
 		<div>
-			<RadzenButton Style="width: 100%" Text="Google Login" Click=@GoogleLogin type="button" />
+			<button class="btn btn-primary" style="width: 100%" type="button" @onclick=GoogleLogin>Google Login</button>
 		</div>
 		<div>
-			<RadzenButton Style="width: 100%" Text="Register" Click=@Register type="button" />
+			<button class="btn btn-primary" style="width: 100%" type="button">Register</button>
 		</div>
 	</EditForm>
-	
-</div>-->
-
-<!--
-<div class="col-xl-6 p-3">
-	<RadzenCard class="p-5">
-		<RadzenText TextStyle="TextStyle.H5" TagName="TagName.H2" Class="mb-4">
-			Login with register
-		</RadzenText>
-		<RadzenTemplateForm Data=@("LoginWithRegister")>
-			<RadzenLogin  />
-		</RadzenTemplateForm>
-	</RadzenCard>
-</div>-->
-
-<div class="login_form">
-	<RadzenCard class="p-5">
-		<RadzenText TextStyle="TextStyle.H5" TagName="TagName.H2" Class="mb-4">
-			Nanarachi Login
-		</RadzenText>
-		<RadzenTemplateForm Data=@_input>
-			<RadzenLogin AllowResetPassword="false"
-						 Login=@(args => _OnLogin(args))
-						 Register=@_Register />
-		</RadzenTemplateForm>
-	</RadzenCard>
 </div>
