@@ -1,9 +1,14 @@
-﻿login_form {
+﻿/*login_form {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
   background-color: black;
+}*/
+
+login_form
+{
+
 }
 
 login_form form {
