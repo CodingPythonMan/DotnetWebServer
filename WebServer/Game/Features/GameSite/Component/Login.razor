@@ -1,9 +1,14 @@
 ﻿<div class="login_form">
 	<EditForm Model="_input" OnSubmit=@_OnSubmit>
 		<DataAnnotationsValidator />
-		<InputText placeholder="ID" @bind-Value="_input.Email" />
-		<InputText placeholder="Password" @bind-Value="_input.Password" type="password" />
-		
+
+		<div class="email">
+			<InputText class="EmailInput"placeholder="ID" @bind-Value="_input.Email" />
+		</div>
+		<div class="password">
+			<InputText class="PasswordInput" placeholder="Password" @bind-Value="_input.Password" type="password" />
+		</div>
+			
 		<div>
 			<button style="width: 100%" type="submit">Login</button>
 		</div>
