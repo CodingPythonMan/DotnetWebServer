@@ -2,13 +2,14 @@
 
 @using Game.Features.GameSite.Component
 
-<AuthorizeView>
-	<Authorized>
-		@Body
-	</Authorized>
-	<NotAuthorized>
-		<Login />
-	</NotAuthorized>
-</AuthorizeView>
-
-<persist-component-state />
+<body>
+	<AuthorizeView>
+		<Authorized>
+			@Body
+		</Authorized>
+		<NotAuthorized>
+			<Login />
+		</NotAuthorized>
+	</AuthorizeView>
+	<persist-component-state />
+</body>

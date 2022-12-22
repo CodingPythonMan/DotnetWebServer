@@ -3,14 +3,15 @@
 		<DataAnnotationsValidator />
 		<InputText placeholder="ID" @bind-Value="_input.Email" />
 		<InputText placeholder="Password" @bind-Value="_input.Password" type="password" />
-		<button class="btn btn-primary" style="width: 100%" type="submit">Login</button>
+		
 		<div>
+			<button style="width: 100%" type="submit">Login</button>
 		</div>
 		<div>
-			<button class="btn btn-primary" style="width: 100%" type="button" @onclick=GoogleLogin>Google Login</button>
+			<button style="width: 100%" type="button" @onclick=GoogleLogin>Google Login</button>
 		</div>
 		<div>
-			<button class="btn btn-primary" style="width: 100%" type="button">Register</button>
+			<button style="width: 100%" type="button">Register</button>
 		</div>
 	</EditForm>
 </div>

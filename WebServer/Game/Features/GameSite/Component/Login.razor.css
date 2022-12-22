@@ -1,11 +1,12 @@
-﻿.login_form {
+﻿login_form {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
+  background-color: black;
 }
 
-.login_form form {
+login_form form {
   min-width: 500px;
   max-width: 500px;
   width: 500px;
