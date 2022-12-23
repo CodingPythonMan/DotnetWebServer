@@ -1,22 +1,26 @@
-﻿<div class="login_form">
+﻿<div class="login_container">
 	<EditForm Model="_input" OnSubmit=@_OnSubmit>
 		<DataAnnotationsValidator />
 
-		<div class="email">
-			<InputText class="EmailInput"placeholder="ID" @bind-Value="_input.Email" />
-		</div>
-		<div class="password">
-			<InputText class="PasswordInput" placeholder="Password" @bind-Value="_input.Password" type="password" />
-		</div>
-			
-		<div>
-			<button style="width: 100%" type="submit">Login</button>
-		</div>
-		<div>
-			<button style="width: 100%" type="button" @onclick=GoogleLogin>Google Login</button>
-		</div>
-		<div>
-			<button style="width: 100%" type="button">Register</button>
+		<div class="login_form">
+			<div class="login_head">
+
+			</div>
+
+			<div class="email_wrap">
+				<div class="email">
+					<InputText @bind-Value="_input.Email" />
+				</div>
+			</div>
+			<div class="password_wrap">
+				<div class="password">
+					<InputText @bind-Value="_input.Password" type="password" />
+				</div>
+			</div>
+			<div class="login_button">
+				<button type="submit">Login</button>
+			</div>
 		</div>
 	</EditForm>
 </div>
+

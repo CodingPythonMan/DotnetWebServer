@@ -1,29 +1,63 @@
-﻿/*login_form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  background-color: black;
+﻿.login_container {
+  display: table-cell;
+  vertical-align: middle;
 }
 
-.login_form form {
-  min-width: 500px;
-  max-width: 500px;
+.login_container .login_form {
   width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}*/
-
-.login_form {
-  width: 500px;
-  height: 500px;
+  height: 700px;
   margin: 0 auto;
   background-color: #1f1d1d;
+  vertical-align: middle;
 }
 
-.login_form form .EmailInput {
-  border: none;
-  background: transparent;
+.login_head{
+  width: 100%;
+  height: 180px;
+}
+
+/* login form input */
+.email {
+  border-radius: 3px;
+  width: 300px;
+  height: 50px;
+  border: 1px solid grey;
   margin: 0 auto;
+}
+
+.email_wrap {
+  height: 75px;
+}
+
+.password {
+  border-radius: 3px;
+  width: 300px;
+  height: 50px;
+  border: 1px solid grey;
+  margin: 0 auto;
+}
+
+.password_wrap {
+  height: 75px;
+}
+
+/* input */
+::deep input {
+  width: 296px;
+  height: 50px;
+  background: transparent;
+  border: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  color: #736D67;
+}
+
+/* button */
+.login_button {
+  width: 300px;
+  margin: 0 auto;
+}
+
+::deep button{
+  width: 100%;
 }
