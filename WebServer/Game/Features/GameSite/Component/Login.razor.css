@@ -12,39 +12,56 @@
 }
 
 .login_head{
+  display: table;
   width: 100%;
   height: 180px;
+  border-collapse: collapse;
+}
+
+.head_title {
+  display: table-row;
+  vertical-align: bottom;
+  margin: 0 auto;
+}
+
+.login_head p {
+  color: white;
+  margin: 0 auto;
 }
 
 /* login form input */
 .email {
-  border-radius: 3px;
-  width: 300px;
-  height: 50px;
+  border-radius: 5px;
+  width: 360px;
+  height: 75px;
   border: 1px solid grey;
   margin: 0 auto;
 }
 
 .email_wrap {
-  height: 75px;
+  height: 120px;
 }
 
 .password {
-  border-radius: 3px;
-  width: 300px;
-  height: 50px;
+  border-radius: 5px;
+  width: 360px;
+  height: 75px;
   border: 1px solid grey;
   margin: 0 auto;
 }
 
 .password_wrap {
+  height: 120px;
+}
+
+.user_content{
   height: 75px;
 }
 
 /* input */
 ::deep input {
-  width: 296px;
-  height: 50px;
+  width: 356px;
+  height: 75px;
   background: transparent;
   border: 0;
   font-family: 'Roboto';
@@ -54,10 +71,19 @@
 
 /* button */
 .login_button {
-  width: 300px;
+  width: 360px;
   margin: 0 auto;
 }
 
-::deep button{
+::deep button {
   width: 100%;
+  height: 75px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.0rem;
+  opacity: 0.9;
+}
+::deep button:hover {
+  opacity: 1.0;
 }
