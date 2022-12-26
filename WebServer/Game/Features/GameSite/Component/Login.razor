@@ -5,22 +5,24 @@
 		<div class="login_form">
 			<div class="login_head">
 				<div class="head_title">
-					<p>NaNarachi</p>
+					<p>NaNarachi Login</p>
 				</div>
 			</div>
 
 			<div class="email_wrap">
 				<div class="email">
-					<InputText @bind-Value="_input.Email" />
+					<label for="email_input">이메일 주소</label>
+					<InputText id="email_input" @bind-Value="_input.Email" />
 				</div>
 			</div>
 			<div class="password_wrap">
 				<div class="password">
-					<InputText @bind-Value="_input.Password" type="password" />
+					<label for="password_input">비밀번호</label>
+					<InputText id="password_input" @bind-Value="_input.Password" type="password" />
 				</div>
 			</div>
 			<div class="user_content">
-
+				
 			</div>
 			<div class="login_button">
 				<button type="submit">Login</button>

@@ -12,37 +12,27 @@
 }
 
 .login_head{
-  display: table;
+  position: relative;
   width: 100%;
   height: 180px;
-  border-collapse: collapse;
 }
 
-.head_title {
-  display: table-row;
-  vertical-align: bottom;
-  margin: 0 auto;
-}
-
-.login_head p {
+.head_title p {
+  position: absolute;
   color: white;
-  margin: 0 auto;
+  font-size: large;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* login form input */
-.email {
-  border-radius: 5px;
-  width: 360px;
-  height: 75px;
-  border: 1px solid grey;
-  margin: 0 auto;
-}
-
+/* email */
 .email_wrap {
   height: 120px;
 }
 
-.password {
+.email {
+  position: relative;
   border-radius: 5px;
   width: 360px;
   height: 75px;
@@ -50,23 +40,59 @@
   margin: 0 auto;
 }
 
+.email_wrap label {
+  position: absolute;
+  margin-top: 10px;
+  z-index: 2;
+  left: 1.5em;
+  color: white;
+}
+
+/* password */
 .password_wrap {
   height: 120px;
 }
 
+.password {
+  position: relative;
+  border-radius: 5px;
+  width: 360px;
+  height: 75px;
+  border: 1px solid grey;
+  margin: 0 auto;
+}
+
+.password_wrap label {
+  position: absolute;
+  margin-top: 10px;
+  z-index: 2;
+  left: 1.5em;
+  color: white;
+}
+
+/* user content */
 .user_content{
   height: 75px;
 }
 
 /* input */
 ::deep input {
+  padding-top: 20px;
+  text-indent: 2em;
   width: 356px;
-  height: 75px;
+  height: 55px;
   background: transparent;
-  border: 0;
-  font-family: 'Roboto';
+  border: none;
   font-style: normal;
-  color: #736D67;
+  color: white;
+}
+
+::deep .valid.modified {
+  outline: none;
+}
+
+::deep .invalid.modified {
+  outline: none;
 }
 
 /* button */
