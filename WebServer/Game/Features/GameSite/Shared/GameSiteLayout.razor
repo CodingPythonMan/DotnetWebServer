@@ -5,10 +5,13 @@
 <body>
 	<AuthorizeView>
 		<Authorized>
-			@Body
+			<section class="login_after">
+				<Navbar />
+				@Body
+			</section>
 		</Authorized>
 		<NotAuthorized>
-			<section>
+			<section class="login_before">
 				<Login />
 			</section>
 		</NotAuthorized>
