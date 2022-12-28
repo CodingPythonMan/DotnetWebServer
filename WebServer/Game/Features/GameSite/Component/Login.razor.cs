@@ -1,5 +1,4 @@
-﻿using Game.Features.GameSite.Dialog;
-using Game.Features.Identity.Model;
+﻿using Game.Features.Identity.Model;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;

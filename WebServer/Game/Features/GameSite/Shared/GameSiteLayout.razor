@@ -5,15 +5,15 @@
 <body>
 	<AuthorizeView>
 		<Authorized>
-			<section class="login_after">
+			<div class="login_after">
 				<Navbar />
 				@Body
-			</section>
+			</div>
 		</Authorized>
 		<NotAuthorized>
-			<section class="login_before">
+			<div class="login_before">
 				<Login />
-			</section>
+			</div>
 		</NotAuthorized>
 	</AuthorizeView>
 	<persist-component-state />

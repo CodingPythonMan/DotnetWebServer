@@ -2,8 +2,6 @@
     Init: function () {
         let navUlLis = document.querySelectorAll("nav ul li");
 
-        console.log(navUlLis.length);
-
         let account_btn = document.querySelector(".account_btn");
         let account_show = document.querySelector("nav ul .account_show");
         let first = document.querySelector(".first");
