@@ -1,16 +1,13 @@
 ﻿* {
-  margin: 0;
-  padding: 0;
   user-select: none;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 .left_side_bar{
   position: fixed;
   width: 250px;
   height: 100%;
-  left: 0px;
+  left: 0;
   background: #1b1b1b;
 }
 
@@ -32,7 +29,7 @@ nav ul{
 }
 
 nav ul li {
-  line-height: 60px;
+  line-height: 65px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 

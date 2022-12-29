@@ -1,7 +1,7 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 h1:focus {
@@ -63,9 +63,16 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+/* User Customization */
+
 #components-reconnect-modal{
   display: none;
 }
   .components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected {
     display: none;
   }
+
+* {
+  margin: 0;
+  padding: 0;
+}
