@@ -39,6 +39,6 @@
   width: 100%;
 }
 
-::deep button:hover {
+::deep button:hover{
   opacity: 1.0;
 }

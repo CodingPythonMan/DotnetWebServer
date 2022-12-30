@@ -1,0 +1,40 @@
+﻿@page "/AssignRoles"
+
+<section>
+	<h2>Assign Roles</h2>
+
+	<div class="assign_roles_form">
+		<table class="assign_roles_table">
+			<tr>
+				<th>ID</th>
+				@{
+					var roles = Enum.GetNames(typeof(Roles));
+					for (var i = 0; i < roles.Length; i++)
+					{
+						int idx = i;
+						<th>@roles[idx]</th>
+					}
+				}
+			</tr>
+
+			@for (int i = 0; i < _userRoleInfos.Count; i++)
+			{
+				int infoIdx = i;
+				<tr class="AssignRolesRow">
+					<td class="AssignRolesCol">
+						<span>@_userRoleInfos[infoIdx].Email</span>
+					</td>
+					@for (var j = 0; j < _userRoleInfos[infoIdx].Roles.Length; j++)
+					{
+						int roleIdx = j;
+						<td class="AssignRolesCol">
+							<input type="checkbox" checked=@_userRoleInfos[infoIdx].Roles[roleIdx]
+							@onchange="eventArgs => {_OnChangedRole(infoIdx, roleIdx, eventArgs.Value!);}" />
+						</td>
+					}
+				</tr>
+			}
+		</table>
+		<button class="assign_btn" @onclick="_OnClickSave">Save</button>
+	</div>
+</section>

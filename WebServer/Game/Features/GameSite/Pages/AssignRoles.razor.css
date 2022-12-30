@@ -1,0 +1,40 @@
+﻿.assign_roles_form{
+  width: 50%;
+}
+
+.assign_roles_table{
+  border-collapse: collapse;
+  width: 400px;
+  height: 200px;
+  border: 1px solid #bdc3c7;
+  box-shadow: 2px 2px 12px rgbA(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0.2);
+}
+
+.assign_roles_table tr{
+  transition: all .2s ease-in;
+}
+
+.assign_roles_table th, td{
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.assign_btn {
+  margin-top: 30px;
+  background-color: #4CAF50;
+}
+
+::deep button:hover {
+  opacity: 1.0;
+}
+
+::deep input[type=checkbox] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.7); /* IE */
+  -moz-transform: scale(1.7); /* FF */
+  -webkit-transform: scale(1.7); /* Safari and Chrome */
+  -o-transform: scale(1.7); /* Opera */
+  transform: scale(1.7);
+  padding: 10px;
+}

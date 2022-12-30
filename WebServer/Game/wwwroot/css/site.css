@@ -89,6 +89,17 @@ section{
   margin: 15px;
 }
 
-button{
+button {
+  width: 50%;
+  height: 75px;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  font-size: 1.3rem;
+  opacity: 0.8;
   cursor: pointer;
 }
+
+  button:hover {
+    opacity: 1.0;
+  }
