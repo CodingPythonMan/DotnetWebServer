@@ -1,5 +1,7 @@
 ﻿@page "/AssignRoles"
 
+@attribute [Authorize(Roles = Constants.ROLE_ADMIN)]
+
 <section>
 	<h2>Assign Roles</h2>
 

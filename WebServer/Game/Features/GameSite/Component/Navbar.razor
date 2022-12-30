@@ -37,16 +37,20 @@
                     <li><a href="#">아이템 회수</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="/Registration">
-                    사용자 등록
-                </a>
-            </li>
-            <li>
-                <a href="/AssignRoles">
-                    권한 할당
-                </a>
-            </li>
+            <AuthorizeView Roles=@Constants.ROLE_ADMIN>
+					<Authorized>
+                        <li>
+                            <a href="/Registration">
+                                사용자 등록
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/AssignRoles">
+                                권한 할당
+                            </a>
+                        </li>
+					</Authorized>
+            </AuthorizeView>
         </ul>
     </div>
 </nav>

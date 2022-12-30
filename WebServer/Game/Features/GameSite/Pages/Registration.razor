@@ -1,5 +1,7 @@
 ﻿@page "/Registration"
 
+@attribute [Authorize(Roles = Constants.ROLE_ADMIN)]
+
 <section>
 	<h2>Registration</h2>
 
