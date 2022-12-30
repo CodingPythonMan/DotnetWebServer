@@ -3,25 +3,26 @@
 <section>
 	<h2>Registration</h2>
 
-	<EditForm class="RegisterUserTable" Model="_input" OnSubmit=@_OnSubmit>
-		<DataAnnotationsValidator />
-		<ValidationSummary style="color: red;"/>
+	<div class="register_form">
+		<EditForm Model="_input" OnSubmit=@_OnSubmit>
+			<DataAnnotationsValidator />
+			<ValidationSummary style="color: red;"/>
 
-		<table class="register_table">
-			<tr>
-				<td>Email</td>
-				<td><InputText @bind-Value="_input.Email" /></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><InputText type="password" @bind-Value="_input.Password" /></td>
-			</tr>
-			<tr>
-				<td>Confirm Password</td>
-				<td><InputText type="password" @bind-Value="_input.ConfirmPassword" /></td>
-			</tr>
-		</table>
-		<button class="register_btn" type="submit">Register</button>
-	</EditForm>
-
+			<table class="register_table">
+				<tr>
+					<td>Email</td>
+					<td><InputText @bind-Value="_input.Email" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><InputText type="password" @bind-Value="_input.Password" /></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><InputText type="password" @bind-Value="_input.ConfirmPassword" /></td>
+				</tr>
+			</table>
+			<button class="register_btn" type="submit">Register</button>
+		</EditForm>
+	</div>
 </section>

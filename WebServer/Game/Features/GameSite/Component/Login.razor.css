@@ -110,6 +110,7 @@
   font-size: 1.0rem;
   opacity: 0.9;
 }
+
 ::deep button:hover {
   opacity: 1.0;
 }

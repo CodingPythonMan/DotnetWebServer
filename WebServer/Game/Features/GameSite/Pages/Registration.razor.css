@@ -1,19 +1,44 @@
-﻿.register_table {
+﻿.register_form {
+  width: 600px;
+}
+
+.register_table {
+  width: 100%;
+  margin: 0 20px 20px 10px;
   border-collapse: separate;
-  border-spacing: 40px 20px;
+  border-spacing: 0px 20px;
 }
 
 .register_table td {
   text-align: left;
+  font-size: 1.2rem;
 }
 
 .register_btn {
-  width: 200px;
+  width: 50%;
   height: 75px;
   border-radius: 5px;
-  border: 1px;
+  border: 0;
   background-color: #4CAF50;
   color: white;
-  font-size: 1.0rem;
+  font-size: 1.3rem;
   opacity: 0.9;
+}
+
+::deep ul {
+  margin: 20px 0 0 20px;
+}
+
+::deep li {
+  margin: 10px;
+}
+
+::deep input {
+  font-size: 16px;
+  padding: 15px 10px;
+  width: 100%;
+}
+
+::deep button:hover {
+  opacity: 1.0;
 }
