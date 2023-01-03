@@ -43,7 +43,7 @@
 .email_wrap label {
   position: absolute;
   margin-top: 10px;
-  z-index: 2;
+  z-index: 20;
   left: 1.5em;
   color: white;
 }
@@ -65,14 +65,19 @@
 .password_wrap label {
   position: absolute;
   margin-top: 10px;
-  z-index: 2;
+  z-index: 20;
   left: 1.5em;
   color: white;
 }
 
 /* user content */
-.user_content{
+.user_content_wrap {
+  position: relative;
   height: 75px;
+}
+
+.user_content_wrap select {
+  width: 100px;
 }
 
 /* input */
