@@ -72,13 +72,15 @@
 
 /* user content */
 .user_content_wrap {
-  position: relative;
+  display: flex;
+  justify-content: right;
   height: 75px;
 }
 
-.user_content_wrap select {
-  width: 100px;
-}
+  .user_content_wrap select {
+    margin-right: 70px;
+    height: 30px;
+  }
 
 /* input */
 ::deep input {
