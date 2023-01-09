@@ -11,6 +11,10 @@
   background: #1b1b1b;
 }
 
+  .left_side_bar::-webkit-scrollbar {
+    display: none;
+  }
+
 .left_side_bar .text{
   color: white;
   font-size: 25px;
@@ -109,7 +113,7 @@ nav ul li a span{
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  font-size: 22px;
+  font-size: 15px;
   transition: transform 0.4s;
 }
 
