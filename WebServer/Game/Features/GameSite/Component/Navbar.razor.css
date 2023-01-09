@@ -72,6 +72,10 @@ nav ul .item_show.show {
   display: block;
 }
 
+nav ul .chatting_show.show {
+  display: block;
+}
+
 nav ul ul li {
   line-height: 42px;
   border-bottom: none;
