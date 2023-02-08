@@ -1,0 +1,10 @@
+{
+  "env": {
+    "gameId": "kim@ringgames.com",
+    "gamePassword": "1234"
+  },
+  "auth": {
+	"googleId": "",
+	"googleSecret": ""
+  },
+}
