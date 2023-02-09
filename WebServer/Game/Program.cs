@@ -134,8 +134,8 @@ app.UseRouting();
 // SameSite 오류 해결
 app.UseCookiePolicy(new CookiePolicyOptions()
 {
-    //MinimumSameSitePolicy = SameSiteMode.Lax
-    Secure = CookieSecurePolicy.Always
+    Secure = CookieSecurePolicy.SameAsRequest
+    //Secure = CookieSecurePolicy.Always
 });
 
 // 인증
