@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\NewFolder\**" />
+    <Compile Remove="Services\**" />
+    <Content Remove="Features\NewFolder\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Features\NewFolder\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Features\NewFolder\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Features\GameSite\Component\Header.razor.css" />
   </ItemGroup>
 
@@ -27,8 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\NewFolder\" />
-    <Folder Include="Services\Dialog\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

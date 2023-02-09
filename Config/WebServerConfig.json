@@ -4,7 +4,7 @@
     "gamePassword": "1234"
   },
   "auth": {
-	"googleId": "",
-	"googleSecret": ""
-  },
+	"googleId": "123",
+	"googleSecret": "123"
+  }
 }

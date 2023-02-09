@@ -1,0 +1,16 @@
+{
+  "MsSql": {
+    "DB": [
+      {
+        "TypeId": 15000,
+        "Validate": true,
+        "DatabaseName": "",
+        "IPAddress": "",
+        "Port": 1433,
+        "Id": "",
+        "Password": "",
+        "MaxRange": 100000
+      }
+    ]
+  }
+} 
