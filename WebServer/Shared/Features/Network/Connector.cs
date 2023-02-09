@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace Shared.Features.Network
 {
     public class Connector
-    {s
-        //Func<Session>
+    {
     }
 }
