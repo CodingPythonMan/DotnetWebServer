@@ -58,8 +58,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
 });
 
-/* 왜 필요한건지 파악하기
-builder.Services.AddAuthorization(options =>
+// 왜 필요한건지 파악하기
+/*builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdmin", c => c.RequireRole("Admin"));
 });*/

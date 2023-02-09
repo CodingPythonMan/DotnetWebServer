@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,6 @@ namespace Game.Features.Identity.Controllers
 
             if(isTokenValid)
             {
-                Console.WriteLine("로그인 성공!");
                 await _SignInManager.SignInAsync(identityUser, true);
                 if(parts.Length == 3 && Url.IsLocalUrl(parts[2]))
                 {
