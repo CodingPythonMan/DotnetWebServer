@@ -49,7 +49,7 @@
 
         chatting_btn.addEventListener('click', function (e) {
             chatting_show.classList.toggle('show');
-            chatting.classList.toggle('rotate');
+            chatting_span.classList.toggle('rotate');
             e.preventDefault();
         });
     }

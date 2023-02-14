@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Features\NewFolder\**" />
-    <Compile Remove="Services\**" />
+    <Compile Remove="wwwroot\images\**" />
     <Content Remove="Features\NewFolder\**" />
-    <Content Remove="Services\**" />
+    <Content Remove="wwwroot\images\**" />
     <EmbeddedResource Remove="Features\NewFolder\**" />
-    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
     <None Remove="Features\NewFolder\**" />
-    <None Remove="Services\**" />
+    <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,15 +30,12 @@
     <PackageReference Include="AspNet.Security.OpenId.Steam" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

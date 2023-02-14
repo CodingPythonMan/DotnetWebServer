@@ -1,5 +1,6 @@
 using Game.Features.Identity.Components;
 using Game.Features.Identity.Model;
+using Game.Services.HubConnection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Components;
@@ -21,6 +22,9 @@ builder.WebHost.UseUrls("http://*:80");
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+// Hub 만들기위한 작업
+builder.Services.AddSignalR();
 
 // Dependency Injection
 builder.Services.AddSingleton<ConfigService>(new ConfigService());
@@ -147,5 +151,9 @@ app.MapControllers();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+// Hub 사용
+app.MapRazorPages();
+app.MapHub<ChatHub>(ChatHub.HubUrl);
 
 app.Run();
