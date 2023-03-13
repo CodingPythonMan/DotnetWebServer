@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\NewFolder\**" />
     <Compile Remove="wwwroot\images\**" />
-    <Content Remove="Features\NewFolder\**" />
     <Content Remove="wwwroot\images\**" />
-    <EmbeddedResource Remove="Features\NewFolder\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
-    <None Remove="Features\NewFolder\**" />
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
