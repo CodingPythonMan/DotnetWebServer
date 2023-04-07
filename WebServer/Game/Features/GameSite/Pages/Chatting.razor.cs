@@ -13,19 +13,19 @@ namespace Game.Features.GameSite.Pages
         private bool _isChatting = false;
 
         // name of the user who will be chatting
-        private string _username;
+        private string _username = null!;
 
         // on-screen message
-        private string _message;
+        private string _message = null!;
 
         // new message input
-        private string _newMessage;
+        private string _newMessage = null!;
 
         // list of messages in chat
         private List<Message> _messages = new List<Message>();
 
-        private string _hubUrl;
-        private HubConnection _hubConnection;
+        private string _hubUrl = null!;
+        private HubConnection _hubConnection = null!;
 
         public async Task Chat()
         {
@@ -86,7 +86,7 @@ namespace Game.Features.GameSite.Pages
                 await _hubConnection.StopAsync();
                 await _hubConnection.DisposeAsync();
 
-                _hubConnection = null;
+                _hubConnection = null!;
                 _isChatting = false;
             }
         }

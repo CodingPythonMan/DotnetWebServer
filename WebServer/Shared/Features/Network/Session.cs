@@ -149,7 +149,7 @@ namespace Shared.Features.Network
                     bool pending = _socket.SendAsync(_sendArgs);
                     if(pending == false)
                     {
-                        OnSendCompleted(null, _sendArgs);
+                        OnSendCompleted(null!, _sendArgs);
                     }
                 }
             }
