@@ -64,6 +64,12 @@ nav ul ul {
   display: none;
 }
 
+
+/* 메뉴 시작 */
+nav ul .excel_show.show {
+  display: block;
+}
+
 nav ul .account_show.show {
   display: block;
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Radzen;
 using Shared.Base.Common;
 using Shared.Services.Config;
 using Shared.Services.DB.GameSiteUserDB;
@@ -31,6 +32,9 @@ builder.Services.AddSingleton<ConfigService>(new ConfigService());
 
 DBConnectStringService dbConnectStringService = new DBConnectStringService();
 builder.Services.AddSingleton<DBConnectStringService>(dbConnectStringService);
+
+
+builder.Services.AddScoped<DialogService>();
 
 builder.Services.AddScoped<GameSiteUserDBService>();
 

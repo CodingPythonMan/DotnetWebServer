@@ -1,0 +1,13 @@
+﻿@page "/AnalyzeXlsx"
+
+<div class="content-wrapper">
+	<div class="container-fluid">
+		<div class="game_title">
+			<h1>Analyze Xlsx</h1>
+		</div>
+		<section class="content">
+			<label class="game_btn submit" for="file">Submit table</label>
+			<InputFile OnChange="@LoadTableFile" id="file" style="display: none;" accept=".xlsx" />
+		</section>
+	</div>
+</div>

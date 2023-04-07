@@ -2,6 +2,10 @@
     Init: function () {
         let navUlLis = document.querySelectorAll("nav ul li");
 
+        let excel_btn = document.querySelector(".excel_btn");
+        let excel_show = document.querySelector("nav ul .excel_show");
+        let excel_span = document.querySelector(".excel_span");
+
         let account_btn = document.querySelector(".account_btn");
         let account_show = document.querySelector("nav ul .account_show");
         let account_span = document.querySelector(".account_span");
@@ -27,6 +31,12 @@
 
                 navUlLi.classList.add("active");
             });
+        });
+
+        excel_btn.addEventListener('click', function (e) {
+            excel_show.classList.toggle('show');
+            excel_span.classList.toggle('rotate');
+            e.preventDefault();
         });
         
         account_btn.addEventListener('click', function (e) {
