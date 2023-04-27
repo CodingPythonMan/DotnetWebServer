@@ -1,5 +1,5 @@
 # C# Webserver (Nanarachi)
-- Gitignore 추가
+- Blazor UserManager 를 이용한 토큰 인증 방식 로그인
 
 ## Features
 - 로그인 구현 (EF Scaffolding 수동 구현)
