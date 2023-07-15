@@ -1,4 +1,4 @@
-# C# Webserver (Nanarachi)
+# C# Webserver
 - Blazor UserManager 를 이용한 토큰 인증 방식 로그인
 
 ## Features
